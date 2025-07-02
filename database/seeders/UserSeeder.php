@@ -23,8 +23,9 @@ class UserSeeder extends Seeder
         foreach ($roles as $roleName) {
             $role = Role::firstOrCreate(['role_name' => $roleName]);
 
-            User::create([
+            User::firstOrCreate([
                 'username' => str_replace(' ', '_', $roleName),
+            ], [
                 'email' => $roleName . '@gmail.com',
                 'password' => Hash::make('password'),
                 'name' => ucfirst($roleName),

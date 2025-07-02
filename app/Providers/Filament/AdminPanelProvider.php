@@ -17,6 +17,11 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\CageOverview;
+use App\Filament\Widgets\AnimalCageTable;
+use App\Filament\Widgets\InventoryOverview;
+use App\Filament\Widgets\InventoryTable;
+use App\Filament\Widgets\ProductionSummary;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -37,8 +42,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                CageOverview::class,
+                AnimalCageTable::class,
+                InventoryOverview::class,
+                InventoryTable::class,
+                ProductionSummary::class,
             ])
             ->middleware([
                 EncryptCookies::class,

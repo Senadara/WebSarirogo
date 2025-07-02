@@ -15,7 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //$this->call(UserSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
+            CategorySeeder::class,
+            LandSeeder::class,
+            CageSeeder::class,
+            InventorySeeder::class,
+            PlantSeeder::class,
+            AnimalSeeder::class,
+            ReportSeeder::class,
+            TransactionSeeder::class,
+            DetailTransactionSeeder::class,
+            LogTransactionSeeder::class,
+            LogSeeder::class,
+        ]);
 
         DB::table('categories')->insert([
             'name_category' => 'Okra',
