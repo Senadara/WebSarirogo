@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_category', 'price'];
+    protected $fillable = ['name_category', 'price', 'unit'];
 
     public $timestamps = false;
 
@@ -28,4 +28,3 @@ class Category extends Model
         return $this->hasMany(Plant::class);
     }
 }
-
