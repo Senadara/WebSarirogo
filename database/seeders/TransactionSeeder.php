@@ -26,6 +26,13 @@ class TransactionSeeder extends Seeder
                 'amount' => 50000,
                 'image' => null,
             ],
+            [
+                'user_id' => $user ? $user->id : 1,
+                'date' => now(),
+                'type' => 'IN',
+                'amount' => 100000,
+                'image' => null,
+            ],
         ];
         foreach ($transactions as $trx) {
             Transaction::firstOrCreate($trx);
