@@ -9,7 +9,7 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'category_id', 'total'];
+    protected $fillable = ['name', 'category_id', 'total', 'expiry_date'];
 
     public $timestamps = false;
 
@@ -17,5 +17,14 @@ class Inventory extends Model
     {
         return $this->belongsTo(Category::class);
     }
-}
 
+    public function dailyUsages()
+    {
+        return $this->hasMany(\App\Models\DailyUsage::class);
+    }
+
+    // public function restockInventories()
+    // {
+    //     return $this->hasMany(\App\Models\RestockInventory::class);
+    // }
+}

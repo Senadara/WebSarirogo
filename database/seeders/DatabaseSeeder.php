@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
             LogSeeder::class,
         ]);
 
-        DB::table('categories')->insert([
-            'name_category' => 'Okra',
-            'price' => 1000.00, // harga per satuan
-        ]);
+        // DB::table('categories')->insert([
+        //     'name_category' => 'Okra',
+        //     'price' => 1000.00, // harga per satuan
+        // ]);
 
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_category', 100);
             $table->decimal('price', 10, 2)->default(0);
+            $table->string('unit', 50); // misalnya: kg, liter, pcs
         });
     }
 

@@ -25,3 +25,5 @@ Route::get('/', function () {
 
 Route::get('/', [LandingController::class, 'index']);
 
+// Route::redirect('/', '/admin');
+

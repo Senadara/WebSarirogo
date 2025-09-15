@@ -13,9 +13,7 @@ class ListInventories extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()
-                ->label('Tambah Inventory')
-                ->icon('heroicon-o-plus'),
+            Actions\CreateAction::make(),
         ];
     }
-} 
+}

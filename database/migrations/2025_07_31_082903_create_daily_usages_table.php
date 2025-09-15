@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('daily_usages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->integer('total')->default(0);
-            $table->date('expiry_date')->nullable(); // hanya untuk obat & pakan
+            $table->foreignId('inventory_id')
+                ->constrained()
+                ->onDelete('cascade');
+            $table->float('quantity_used');
+            $table->date('used_at');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('daily_usages');
     }
 };
