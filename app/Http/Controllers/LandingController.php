@@ -76,7 +76,7 @@ class LandingController extends Controller
         $totalIncome = $transaksi->where('type', 'IN')->sum('amount');
         $totalOutcome = $transaksi->where('type', 'OUT')->sum('amount');
 
-        return view('landing.index', compact(
+        return view('pages.landing.index', compact(
             'populasiAyam',
             'populasiIkan',
             'populasiKambing',
