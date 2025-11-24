@@ -1,21 +1,21 @@
 @extends('layouts.landing')
 
 @section('content')
+<!-- section start - hero section -->
+<section class="relative isolate px-4 md:pt-36 pt-36 sm:px-6 lg:px-8 ">
 
-<section class="relative isolate px-4 md:pt-36 sm:px-6 lg:px-8">
-
-    <!-- bg-blur -->
+    <!-- bg -->
     <div class="absolute inset-x-0 -top-40 -z-10 blur-3xl sm:-top-80">
         <div class="relative left-[calc(50%-11rem)] 
-            w-[36.125rem] -translate-x-1/2 rotate-[30deg]
+            w-[36.125rem] -translate-x-1/2 rotate-[5deg]
             bg-gradient-to-tr from-[#34d399] to-[#10b981]
             opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] aspect-[1155/678]">
         </div>
     </div>
 
     <!-- tagline -->
-    <div class="flex justify-center mb-4 mt-24">
-        <div class="relative rounded-full px-3 py-1 text-sm text-gray-600 ring-1 ring-gray-900/30">
+    <div class="flex justify-center mb-4 mt-28">
+        <div class="relative rounded-full px-5 md:px-10 py-1.5 text-sm text-gray-600 ring-1 ring-gray-900/30">
             Sistem pemantauan peternakan Sarirogo
         </div>
     </div>
@@ -26,69 +26,169 @@
             Dashboard Monitoring Peternakan Sarirogo
         </h1>
 
-        <p class="mt-5 text-base text-gray-600 leading-relaxed">
+        <p class="mt-2 md:mt-3 text-xs md:text-base text-gray-600">
             Sumber informasi resmi hasil populasi peternakan desa Sarirogo.
         </p>
 
-        <!-- CTA button -->
-        <div class="mt-8 flex justify-center">
-            <a href="#statistik"
-                class="group inline-flex items-center justify-center border font-sans font-medium
-                text-sm md:text-base rounded-full py-2.5 px-16 shadow-sm hover:shadow-lg bg-primary-3
-                text-white hover:bg-secondary-3 transition duration-300 ease-in-out">
-                Hubungi Kami
-            </a>
+        <!-- cta button -->
+        <x-ui.button href="#kontak" size="base" class="mt-5">
+            Hubungi kami untuk kerja sama
+        </x-ui.button>
+
+    </div>
+</section>
+<!-- section end - hero section -->
+
+<!-- section start - grafik pertumbuhan pertenakan -->
+<!-- section end - grafik pertumbuhan pertenakan -->
+
+<!-- section start - highlight -->
+<section class="w-full bg-bg-2 mt-20 py-20" id="kontak">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- section kiri-->
+        <div class="md:pt-14">
+            <p class="text-primary-3 font-semibold mb-3">
+                Highlight Peternakan Sarirogo
+            </p>
+
+            <h2 class="text-3xl lg:text-4xl font-bold leading-snug mb-4">
+                Dipercaya oleh Investor <br>
+                untuk Hasil yang Konsisten
+            </h2>
+
+            <p class="text-text-3 md:max-w-lg">
+                berkomitmen menghadirkan manajemen modern dengan data akurat
+                untuk meningkatkan produktivitas dan menekan risiko.
+            </p>
+        </div>
+
+        <!-- section kanan -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+
+            <!-- item 1 -->
+            <div class="flex flex-col">
+                <img src="/assets/icons/kesehatan.svg"
+                    alt="Health Icon"
+                    class="w-8 h-8 mb-3">
+
+                <h3 class="text-xl font-bold mb-1 md:max-w-52">
+                    Tingkat Kesehatan Ternak Tinggi
+                </h3>
+
+                <p class="text-text-3 text-sm leading-relaxed">
+                    Lebih dari 95% hewan ternak bertahan sehat berkat pemantauan rutin.
+                </p>
+            </div>
+
+            <!-- item 2 -->
+            <div class="flex flex-col">
+                <img src="/assets/icons/monitoring.svg"
+                    alt="Monitoring Icon"
+                    class="w-8 h-8 mb-3">
+
+                <h3 class="text-xl font-bold mb-1 md:max-w-40">
+                    Monitoring Digital Terpadu
+                </h3>
+
+                <p class="text-text-3 text-sm leading-relaxed">
+                    Semua data tercatat digital & transparan.
+                </p>
+            </div>
+
+            <!-- item 3 -->
+            <div class="flex flex-col">
+                <img src="/assets/icons/pakan.svg"
+                    alt="Efficiency Icon"
+                    class="w-8 h-8 mb-3">
+
+                <h3 class="text-xl font-bold mb-1">
+                    Efisiensi Pakan Optimal
+                </h3>
+
+                <p class="text-text-3 text-sm leading-relaxed">
+                    Penggunaan pakan tercatat rapi, menekan biaya tanpa mengurangi pertumbuhan.
+                </p>
+            </div>
+
+            <!-- item 4 -->
+            <div class="flex flex-col">
+                <img src="/assets/icons/box.svg"
+                    alt="Stable Icon"
+                    class="w-8 h-8 mb-3">
+
+                <h3 class="text-xl font-bold mb-1">
+                    Hasil Produksi Stabil
+                </h3>
+
+                <p class="text-text-3 text-sm leading-relaxed">
+                    Panen ternak konsisten tiap siklus, mendukung proyeksi keuntungan jangka panjang.
+                </p>
+            </div>
+
         </div>
     </div>
 </section>
+<!-- section end - highlight -->
 
-<!-- statistik section -->
-<section id="statistik" class="md:py-44 py-10 px-4 sm:px-6 lg:px-20">
-    <div class="max-w-6xl mx-auto">
+<!-- section start - kontak -->
+<section class="w-full px-6 md:px-16 lg:px-24 py-16">
+    <!-- heading -->
+    <div class="mb-10">
+        <h1 class="text-4xl font-bold text-black">Kontak</h1>
+        <p class="text-text-3 text-sm mt-1">
+            Kontak & Informasi Desa / Peternakan
+        </p>
+    </div>
 
-        <section class="grid gap-6 md:grid-cols-3 p-4 md:p-8 max-w-5xl mx-auto w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- gmaps -->
+        <div class="w-full h-[350px] md:h-[420px] rounded-xl overflow-hidden shadow-sm">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15792.23542!2d112.718342!3d-7.379345!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x00000000!2sDesa%20Sarirogo!5e0!3m2!1sid!2sid!4v1700000000000"
+                class="w-full h-full border-0"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
 
-            <!-- populasi ternak -->
-            <div class="p-6 bg-gray-500 shadow rounded-2xl">
-                <dl class="space-y-2">
-                    <dt class="text-sm font-medium text-gray-200">Populasi Ternak</dt>
-                    <dd class="text-5xl font-light md:text-6xl text-white">
-                        {{ $populasiAyam }}
-                    </dd>
-                    <dd class="text-sm font-medium text-green-400">
-                        Semua kategori: Ayam
-                    </dd>
-                </dl>
+        <!-- informasi utama -->
+        <div class="flex flex-col gap-8">
+            <!-- alamat -->
+            <div>
+                <h3 class="font-bold text-3xl text-black mb-1">Alamat</h3>
+                <p class="text-text-3 text-sm leading-relaxed">
+                    Jalan Sarirogo Raya 61234 Sidoarjo, Jawa Timur
+                </p>
+                <div class="w-full h-[1px] bg-gray-200 mt-4"></div>
             </div>
 
-            <!-- hasil panen -->
-            <div class="p-6 bg-gray-500 shadow rounded-2xl">
-                <dl class="space-y-2">
-                    <dt class="text-sm font-medium text-gray-200">Hasil Panen</dt>
-                    <dd class="text-5xl font-light md:text-6xl text-white">
-                        {{ $dataTanaman->sum('total_tanaman') }}
-                    </dd>
-                    <dd class="text-sm font-medium text-green-400">
-                        Luas total: {{ $dataTanaman->sum('luas_lahan') }} m²
-                    </dd>
-                </dl>
+            <!-- jam operasional -->
+            <div>
+                <h3 class="font-bold text-3xl text-black mb-1">Jam</h3>
+                <p class="text-text-3 text-sm">Sabtu: 10.00 – 16.00</p>
+                <p class="text-text-3 text-sm">Minggu: Tutup</p>
+
+                <div class="w-full h-[1px] bg-gray-200 mt-4"></div>
             </div>
 
-            <!-- laporan ternak -->
-            <div class="p-6 bg-gray-500 shadow rounded-2xl">
-                <dl class="space-y-2">
-                    <dt class="text-sm font-medium text-gray-200">Laporan Ayam</dt>
-                    <dd class="text-5xl font-light md:text-6xl text-white">
-                        {{ $laporanStatistik['growth'] }}
-                    </dd>
-                    <dd class="text-sm font-medium text-red-400">
-                        Mati: {{ $laporanStatistik['dead'] }}, Baru: {{ $laporanStatistik['new'] }}
-                    </dd>
-                </dl>
+            <!-- kontak -->
+            <div>
+                <h3 class="font-bold text-3xl text-black mb-1">Kontak</h3>
+                <p class="text-text-3 text-sm">
+                    Email: sarirogo@gmail.com <br>
+                    Telepon: +6212345678
+                </p>
             </div>
 
-        </section>
-
+            <!-- cta Button -->
+            <x-ui.button href="#" size="full">
+                Hubungi Kami Untuk Kerja Sama
+            </x-ui.button>
+        </div>
     </div>
 </section>
+<!-- section end - kontak -->
+
+
 @endsection

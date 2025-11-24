@@ -8,7 +8,7 @@
     <!-- Hamburger -->
     <div class="lg:hidden">
         <button id="hamburgerBtn" type="button"
-            class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 transition-colors duration-300">
+            class="inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-100 transition-colors duration-300">
             <span class="sr-only">Buka menu</span>
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -19,13 +19,14 @@
 
     <!-- Desktop menu -->
     <div class="hidden lg:flex gap-x-10 items-center">
-        <a href="#statistik" class="nav-link">Statistik</a>
+        <a href="#ringkasanpopulasi" class="nav-link">Ringkasan Populasi</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
     </div>
 
     <!-- Mobile menu -->
     <div id="mobileMenu"
         class="hidden absolute top-20 w-[90%] rounded-xl bg-white/70 backdrop-blur-3xl shadow-md py-4 text-center">
-
-        <a href="#statistik" class="block nav-link py-5">Statistik</a>
+        <a href="#ringkasanpopulasi" class="block nav-link py-5">Ringkasan Populasi</a>
+        <a href="#kontak" class="block nav-link py-5">Kontak</a>
     </div>
 </nav>
