@@ -1,0 +1,1 @@
+<!-- index, show barang gudang dan form controller nya (info utama, review, logistik, spesifikasi, submitted) dan juga tambah stok -->

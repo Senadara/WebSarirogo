@@ -31,9 +31,9 @@
         </p>
 
         <!-- cta button -->
-        <x-ui.button href="#kontak" size="base" class="mt-5">
+        <x-ui.Button href="#kontak" size="base" class="mt-5">
             Hubungi kami untuk kerja sama
-        </x-ui.button>
+        </x-ui.Button>
 
     </div>
 </section>
@@ -43,7 +43,7 @@
 <!-- section end - grafik pertumbuhan pertenakan -->
 
 <!-- section start - highlight -->
-<section class="w-full bg-bg-2 mt-20 py-20" id="kontak">
+<section class="w-full bg-bg-2 mt-20 py-20" id="highlight">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
 
         <!-- section kiri-->
@@ -132,7 +132,7 @@
 <!-- section end - highlight -->
 
 <!-- section start - kontak -->
-<section class="w-full px-6 md:px-16 lg:px-24 py-16">
+<section class="w-full px-6 md:px-16 lg:px-24 py-16" id="kontak">
     <!-- heading -->
     <div class="mb-10">
         <h1 class="text-4xl font-bold text-black">Kontak</h1>
@@ -182,9 +182,9 @@
             </div>
 
             <!-- cta Button -->
-            <x-ui.button href="#" size="full">
+            <x-ui.Button href="#" size="full">
                 Hubungi Kami Untuk Kerja Sama
-            </x-ui.button>
+            </x-ui.Button>
         </div>
     </div>
 </section>

@@ -1,0 +1,1 @@
+<!-- untuk semua laporan ayam: harian (list + detail), insiden (list + detail), panen (list + detail) -->

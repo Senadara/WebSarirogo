@@ -20,6 +20,7 @@
     <!-- Desktop menu -->
     <div class="hidden lg:flex gap-x-10 items-center">
         <a href="#ringkasanpopulasi" class="nav-link">Ringkasan Populasi</a>
+        <a href="#highlight" class="nav-link">Highlight</a>
         <a href="#kontak" class="nav-link">Kontak</a>
     </div>
 
@@ -27,6 +28,7 @@
     <div id="mobileMenu"
         class="hidden absolute top-20 w-[90%] rounded-xl bg-white/70 backdrop-blur-3xl shadow-md py-4 text-center">
         <a href="#ringkasanpopulasi" class="block nav-link py-5">Ringkasan Populasi</a>
+        <a href="#highlight" class="block nav-link py-5">Highlight</a>
         <a href="#kontak" class="block nav-link py-5">Kontak</a>
     </div>
 </nav>
