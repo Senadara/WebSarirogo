@@ -37,7 +37,6 @@
             lg:text-xl lg:px-24
         ',
 
-        // Full width (di HP jadi full, desktop tetap auto)
         'full' => '
             w-full text-base py-2.5
             md:w-fit md:px-16
