@@ -40,6 +40,46 @@
             </div>
         </div>
 
+        <!-- menu section -->
+        <div class="border rounded-2xl p-5 bg-white shadow-sm mb-6">
+
+            <!-- HEADER MENU -->
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-lg font-semibold text-gray-800">
+                    Menu Manajemen Ayam
+                </h2>
+            </div>
+
+            <!-- GRID MENU -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <x-ui.MenuButton
+                    href="{{ route('admin.ayam.kandang.index') }}"
+                    icon="/assets/icons/boxx.svg"
+                    title="Data Kandang"
+                    description="Kelola informasi setiap kandang ayam"
+                    iconVariant="green"
+                    variant="primary_1" />
+
+                <x-ui.MenuButton
+                    href=""
+                    icon="/assets/icons/note.svg"
+                    title="Laporan Harian"
+                    description="Catat aktivitas harian secara rutin"
+                    iconVariant="yellow"
+                    variant="yellow_1" />
+
+                <x-ui.MenuButton
+                    href=""
+                    icon="/assets/icons/add.svg"
+                    title="Manajemen Pakan"
+                    description="Analisis pertumbuhan & panen"
+                    iconVariant="blue"
+                    variant="accent_1" />
+            </div>
+        </div>
+
+
         <!-- grid card -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
@@ -127,36 +167,6 @@
 
         </div>
 
-        <!-- menu section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
-
-            <x-ui.MenuButton
-                href=""
-                icon="/assets/icons/boxx.svg"
-                title="Data Kandang"
-                description="Kelola informasi setiap kandang ayam"
-                iconVariant="green" 
-                variant="primary_1"
-                />
-
-            <x-ui.MenuButton
-                href=""
-                icon="/assets/icons/note.svg"
-                title="Laporan Harian"
-                description="Catat aktivitas harian secara rutin"
-                iconVariant="yellow" 
-                variant="yellow_1"
-                />
-
-            <x-ui.MenuButton
-                icon="/assets/icons/add.svg"
-                title="Manajemen Pakan"
-                description="Analisis pertumbuhan & panen"
-                iconVariant="blue"
-                variant="accent_1"
-                 />
-
-        </div>
 
         <!-- section grafik -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-8">
@@ -171,19 +181,19 @@
 
                         <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-y-2 gap-x-10 text-sm text-black">
                             <p>Populasi Ayam: <span class="font-semibold">40</span></p>
-                            <p>HD%: <span class="font-bold">92</span></p>
                             <p>FCR: <span class="font-bold">1.82</span></p>
+                            <p>HD%: <span class="font-bold">92</span></p>
                             <p>Umur Produksi: <span class="font-bold">1.82</span></p>
                             <p>Berat Telur (g): <span class="font-bold">62</span></p>
                         </div>
                     </div>
 
-                    <!-- ✅ JARAK ILUSTRASI DIPERLEBAR -->
+                    <!-- ilustrasi foto     -->
                     <img src="/assets/icons/ilustrasiip.svg" class="w-40 h-40 object-contain lg:ml-5" alt="ilustrasi">
                 </div>
             </div>
 
-            {{-- FCR Ayam --}}
+            <!-- fcr time -->
             <div class="bg-white p-6 rounded-xl shadow border">
                 <h3 class="font-semibold text-lg mb-4">FCR Ayam</h3>
 

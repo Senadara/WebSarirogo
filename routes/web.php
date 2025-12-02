@@ -37,12 +37,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //     // ---------------------------
     //     // KANDANG
     //     // ---------------------------
-    //     Route::prefix('kandang')->name('kandang.')->group(function () {
-    //         Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
-    //         Route::get('/create', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])->name('create');
-    //         Route::get('/{id}', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
-    //         Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'edit'])->name('edit');
-    //     });
+        Route::prefix('kandang')->name('kandang.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
+            // Route::get('/create', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])->name('create');
+            // Route::get('/{id}', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
+            // Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'edit'])->name('edit');
+        });
 
     //     // ---------------------------
     //     // LAPORAN

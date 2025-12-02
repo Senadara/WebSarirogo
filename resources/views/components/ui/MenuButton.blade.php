@@ -41,15 +41,15 @@ $iconWrapper = "
    {{ $attributes->merge(['class' => $baseClass]) }}
    style="background-color: {{ $cardBg }};">
     
-    {{-- Icon Wrapper --}}
+    <!-- icon -->
     <div class="{{ $iconWrapper }}" style="background-color: {{ $iconBg }}">
         <img src="{{ $icon }}" class="w-6 h-6 md:w-7 md:h-7" alt="icon">
     </div>
 
-    {{-- Text --}}
+    <!-- text -->
     <div class="flex flex-col">
-        <h3 class="font-semibold text-base md:text-lg">{{ $title }}</h3>
-        <p class="text-gray-600 text-sm md:text-base leading-tight">
+        <h3 class="font-semibold text-lg md:text-lg">{{ $title }}</h3>
+        <p class="text-gray-600 text-sm md:text-sm leading-tight">
             {{ $description }}
         </p>
     </div>
