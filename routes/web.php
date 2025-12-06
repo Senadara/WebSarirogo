@@ -40,16 +40,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('kandang')->name('kandang.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
             // Route::get('/create', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])->name('create');
-            // Route::get('/{id}', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
+            Route::get('/detail', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
             // Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'edit'])->name('edit');
         });
 
     //     // ---------------------------
     //     // LAPORAN
     //     // ---------------------------
-    //     Route::prefix('laporan')->name('laporan.')->group(function () {
+        Route::prefix('laporan')->name('laporan.')->group(function () {
 
-    //         // HAR IAN
+            Route::get('/', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'index'])->name('index');
+
+    //         // HARIAN
     //         Route::get('/harian', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harian'])->name('harian');
     //         Route::get('/harian/{id}', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianDetail'])->name('harian.detail');
 
@@ -60,7 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //         // PANEN
     //         Route::get('/panen', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panen'])->name('panen');
     //         Route::get('/panen/{id}', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panenDetail'])->name('panen.detail');
-    //     });
+            });
 
     //     // ---------------------------
     //     // FORM (STEP-STEP)

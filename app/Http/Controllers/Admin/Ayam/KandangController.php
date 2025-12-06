@@ -11,4 +11,9 @@ class KandangController extends Controller
     {
         return view('pages.admin.ayam.kandang.index');
     }
+
+    public function show()
+    {
+        return view('pages.admin.ayam.kandang.show');
+    }
 }

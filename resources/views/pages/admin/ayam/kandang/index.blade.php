@@ -16,7 +16,7 @@
             <h1 class="text-lg font-bold">Data Kandang</h1>
         </div>
 
-        <h1 class="text-3xl font-bold mb-6 hidden lg:block">Data Kandang</h1>
+        <h1 class="text-4xl font-bold mb-4 hidden lg:block">Data Kandang</h1>
 
         <!-- breadcrumps -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
@@ -30,7 +30,7 @@
                 </a>
 
                 <span>/</span>
-                <span class="font-semibold text-gray-900">Data Kandang</span>
+                <span class="font-semibold text-gray-900">Kandang</span>
             </div>
 
             <div class="flex items-center gap-4">
@@ -47,7 +47,7 @@
 
         <!-- info box -->
         <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
-            <h3 class="font-bold text-black mb-1">Lihat Detail Informasi Kandang</h3>
+            <h3 class="font-bold text-black mb-1">Halaman Seluruh Kandang</h3>
             <p class="md:text-sm text-gray-600 text-xs">
                 Pilih kandang untuk melihat detail informasi kandang
             </p>
@@ -59,7 +59,6 @@
 
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
-        
             <x-form.search placeholder="Cari kandang..." />
 
             <!-- filter -->
@@ -69,7 +68,7 @@
                     Filter
                 </button>
 
-                <!-- belum implement component -->
+                <!-- implement component -->
                 <x-ui.Button size="base" variant="primary" href="#">
                     <img src="/assets/icons/add-square.svg" class="w-4 h-4 mr-2">
                     Tambah Lahan
@@ -79,45 +78,46 @@
         </div>
 
         <!-- grid kandang -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <a href="{{ route('admin.ayam.kandang.show') }}">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-            <!-- card -->
-            @foreach ([1,2,3,4] as $item)
-            <div class="group bg-bg-2 hover:bg-blue-100 transition rounded-xl p-4 flex gap-4 items-center cursor-pointer">
+                <!-- card -->
+                @foreach ([1,2,3,4] as $item)
+                <div class="group bg-bg-2  hover:ring-1 hover:ring-accent-2 hover:bg-blue-100 transition rounded-xl p-4 flex gap-4 items-center cursor-pointer">
 
-                <!-- gambar -->
-                <img src="/assets/icons/kandang.svg"
-                    class="w-20 h-20 rounded-lg object-cover">
+                    <!-- gambar -->
+                    <img src="/assets/icons/kandang.svg"
+                        class="w-20 h-20 rounded-lg object-cover">
 
-                <!-- info -->
-                <div class="flex-1">
-                    <h4 class="font-bold">Kandang A</h4>
-                    <p class="text-sm text-gray-600">7 Minggu</p>
-                    <p class="text-sm text-gray-600">1000 Ekor</p>
+                    <!-- info -->
+                    <div class="flex-1">
+                        <h4 class="font-bold">Kandang A</h4>
+                        <p class="text-sm text-gray-600">7 Minggu</p>
+                        <p class="text-sm text-gray-600">1000 Ekor</p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs text-black mb-1 font-bold">Produksi</p>
+
+                        <p class="text-sm text-black mb-1">0 butir/hari</p>
+
+                        @if ($loop->index == 0)
+                        <span class="px-3 py-1 text-xs rounded-full bg-accent-3 text-white font-semibold">Starter</span>
+                        @elseif ($loop->index == 1)
+                        <span class="px-3 py-1 text-xs rounded-full bg-yellow-3 text-white font-semibold">Grower</span>
+                        @elseif ($loop->index == 2)
+                        <span class="px-3 py-1 text-xs rounded-full bg-primary-3 text-white font-semibold">Production</span>
+                        @else
+                        <span class="px-3 py-1 text-xs rounded-full bg-yellow-5 text-white font-semibold">Afkir</span>
+                        @endif
+
+                    </div>
+
                 </div>
-
-                <div class="text-right">
-                    <p class="text-xs text-black mb-1 font-bold">Produksi</p>
-
-                    <p class="text-sm text-black mb-1">0 butir/hari</p>
-
-                    @if ($loop->index == 0)
-                    <span class="px-3 py-1 text-xs rounded-full bg-accent-3 text-white font-semibold">Starter</span>
-                    @elseif ($loop->index == 1)
-                    <span class="px-3 py-1 text-xs rounded-full bg-yellow-3 text-white font-semibold">Grower</span>
-                    @elseif ($loop->index == 2)
-                    <span class="px-3 py-1 text-xs rounded-full bg-primary-3 text-white font-semibold">Production</span>
-                    @else
-                    <span class="px-3 py-1 text-xs rounded-full bg-yellow-5 text-white font-semibold">Afkir</span>
-                    @endif
-
-                </div>
+                @endforeach
 
             </div>
-            @endforeach
-
-        </div>
-
+        </a>
     </main>
 </div>
 @endsection

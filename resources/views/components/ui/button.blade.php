@@ -72,6 +72,12 @@
             text-primary-3 
             hover:bg-primary-1/20
         ',
+
+        'clean' => '
+            text-gray-800
+            hover:opacity-80
+            shadow-sm hover:shadow
+        ',
     ];
 @endphp
 

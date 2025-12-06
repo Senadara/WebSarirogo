@@ -62,9 +62,9 @@
                     variant="primary_1" />
 
                 <x-ui.MenuButton
-                    href=""
+                    href="{{ route('admin.ayam.laporan.index') }}"
                     icon="/assets/icons/note.svg"
-                    title="Laporan Harian"
+                    title="Laporan Peternakan"
                     description="Catat aktivitas harian secara rutin"
                     iconVariant="yellow"
                     variant="yellow_1" />
@@ -78,7 +78,6 @@
                     variant="accent_1" />
             </div>
         </div>
-
 
         <!-- grid card -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
