@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Alpine.js cloak - hide elements until Alpine is ready */
+[x-cloak] {
+  display: none !important;
+}
 
 .nav-link {
   @apply text-sm font-medium text-gray-800 transition-colors duration-300 hover:text-green-700;

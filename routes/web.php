@@ -21,6 +21,17 @@ Route::get('/', [\App\Http\Controllers\LandingController::class, 'index'])
 
 
 // =======================
+// auth
+// =======================
+Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])
+    ->name('login');
+Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])
+    ->name('login.submit');
+Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])
+    ->name('logout');
+
+
+// =======================
 // admin
 // =======================
 Route::prefix('admin')->name('admin.')->group(function () {
