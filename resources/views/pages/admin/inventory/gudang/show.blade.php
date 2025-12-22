@@ -1,0 +1,1 @@
+<!-- detail data barang di gudang -->
