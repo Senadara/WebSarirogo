@@ -62,17 +62,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             Route::get('/', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'index'])->name('index');
 
-    //         // HARIAN
-    //         Route::get('/harian', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harian'])->name('harian');
-    //         Route::get('/harian/{id}', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianDetail'])->name('harian.detail');
-
-    //         // INSIDEN
-    //         Route::get('/insiden', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'insiden'])->name('insiden');
-    //         Route::get('/insiden/{id}', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'insidenDetail'])->name('insiden.detail');
-
-    //         // PANEN
-    //         Route::get('/panen', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panen'])->name('panen');
-    //         Route::get('/panen/{id}', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panenDetail'])->name('panen.detail');
+            // HARIAN FORM STEPS
+            Route::get('/harian/step-1', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep1'])->name('harian.step1');
+            Route::get('/harian/step-2', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep2'])->name('harian.step2');
+            Route::get('/harian/step-3', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep3'])->name('harian.step3');
             });
 
     //     // ---------------------------
