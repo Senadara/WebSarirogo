@@ -53,7 +53,7 @@
 
             <!-- inventory -->
             <a 
-                href=""
+                href="{{ route('admin.inventory.index') }}"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition group
                     {{ request()->is('admin/inventory*') 
                         ? 'bg-primary-2 font-semibold text-black' 

@@ -27,13 +27,12 @@ $cardBg  = $cardVariants[$variant] ?? '#FFFFFF';
 $iconBg  = $iconVariants[$iconVariant] ?? '#E0F2FE';
 
 $baseClass = "
-    flex items-start gap-3 p-4 rounded-xl shadow-sm border cursor-pointer
-    hover:shadow-md transition
-    md:p-5
+    flex items-start gap-2.5 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl shadow-sm border cursor-pointer
+    hover:shadow-md transition w-full min-w-0
 ";
 
 $iconWrapper = "
-    p-3 rounded-lg flex items-center justify-center
+    p-2 sm:p-3 rounded-lg flex items-center justify-center flex-shrink-0
 ";
 @endphp
 
@@ -43,14 +42,15 @@ $iconWrapper = "
     
     <!-- icon -->
     <div class="{{ $iconWrapper }}" style="background-color: {{ $iconBg }}">
-        <img src="{{ $icon }}" class="w-6 h-6 md:w-7 md:h-7" alt="icon">
+        <img src="{{ $icon }}" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" alt="icon">
     </div>
 
     <!-- text -->
-    <div class="flex flex-col">
-        <h3 class="font-semibold text-lg md:text-lg">{{ $title }}</h3>
-        <p class="text-gray-600 text-sm md:text-sm leading-tight">
+    <div class="flex flex-col min-w-0 flex-1">
+        <h3 class="font-semibold text-sm sm:text-base md:text-lg truncate">{{ $title }}</h3>
+        <p class="text-gray-600 text-xs sm:text-sm leading-tight line-clamp-2">
             {{ $description }}
         </p>
     </div>
 </a>
+

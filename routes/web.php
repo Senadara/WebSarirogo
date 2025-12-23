@@ -97,49 +97,55 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // ============================
     // INVENTORY
     // ============================
-    // Route::prefix('inventory')->name('inventory.')->group(function () {
+    Route::prefix('inventory')->name('inventory.')->group(function () {
         
-           // MAIN PAGE
-    //         Route::get('/', [\App\Http\Controllers\Admin\Inventory\IndexController::class, 'index'])
-    //             ->name('index');
+        // MAIN PAGE
+        Route::get('/', function () {
+            return view('pages.admin.inventory.index');
+        })->name('index');
 
-           // ---------------------------
-           // GUDANG 
-           // ---------------------------
-    //     Route::prefix('gudang')->name('gudang.')->group(function () {
+        // CREATE NEW ITEM
+        Route::get('/create', function () {
+            return view('pages.admin.inventory.forms.info-utama');
+        })->name('create');
 
-    //         // DETAIL ITEM
-    //         Route::get('/{id}', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'show'])
-    //             ->name('show');
+        // ---------------------------
+        // GUDANG 
+        // ---------------------------
+        Route::prefix('gudang')->name('gudang.')->group(function () {
+            Route::get('/', function () {
+                return view('pages.admin.inventory.gudang.index');
+            })->name('index');
 
-    //         // TAMBAH STOK
-    //         Route::get('/{id}/tambah-stok', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'tambahStok'])
-    //             ->name('tambahstok');
+            Route::get('/{id}', function ($id) {
+                return view('pages.admin.inventory.gudang.show', ['id' => $id]);
+            })->name('show');
+        });
 
-    //         // FORMS
-    //         Route::get('/forms/info-utama', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'infoUtama'])
-    //             ->name('form.infoutama');
+        // ---------------------------
+        // STOK 
+        // ---------------------------
+        Route::prefix('stok')->name('stok.')->group(function () {
+            Route::get('/create', function () {
+                return view('pages.admin.inventory.stok.create');
+            })->name('create');
+        });
 
-    //         Route::get('/forms/review', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'review'])
-    //             ->name('form.review');
+        // ---------------------------
+        // PEMAKAIAN 
+        // ---------------------------
+        Route::prefix('pemakaian')->name('pemakaian.')->group(function () {
+            Route::get('/', function () {
+                return view('pages.admin.inventory.pemakaian.list-pemakaian');
+            })->name('index');
 
-    //         Route::get('/forms/logistik', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'logistik'])
-    //             ->name('form.logistik');
+            Route::get('/catat', function () {
+                return view('pages.admin.inventory.pemakaian.catat-pemakaian');
+            })->name('catat');
 
-    //         Route::get('/forms/spesifikasi', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'spesifikasi'])
-    //             ->name('form.spesifikasi');
-
-    //         Route::get('/forms/submitted', [\App\Http\Controllers\Admin\Inventory\GudangController::class, 'submitted'])
-    //             ->name('form.submitted');
-    //     });
-
-    //     // ---------------------------
-    //     // PEMAKAIAN 
-    //     // ---------------------------
-    //     Route::prefix('pemakaian')->name('pemakaian.')->group(function () {
-    //         Route::get('/', [\App\Http\Controllers\Admin\Inventory\PemakaianController::class, 'index'])->name('index');
-    //         Route::get('/list', [\App\Http\Controllers\Admin\Inventory\PemakaianController::class, 'list'])->name('list');
-    //         Route::get('/{id}', [\App\Http\Controllers\Admin\Inventory\PemakaianController::class, 'detail'])->name('detail');
-    //     });
-    // });
+            Route::get('/{id}', function ($id) {
+                return view('pages.admin.inventory.pemakaian.detail', ['id' => $id]);
+            })->name('detail');
+        });
+    });
 });
