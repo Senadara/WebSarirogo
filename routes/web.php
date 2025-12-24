@@ -45,19 +45,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\Ayam\IndexController::class, 'index'])
             ->name('index');
 
-    //     // ---------------------------
-    //     // KANDANG
-    //     // ---------------------------
+        // ---------------------------
+        // KANDANG
+        // ---------------------------
         Route::prefix('kandang')->name('kandang.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
-            // Route::get('/create', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])->name('create');
             Route::get('/detail', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
-            // Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'edit'])->name('edit');
         });
 
-    //     // ---------------------------
-    //     // LAPORAN
-    //     // ---------------------------
+        // ---------------------------
+        // LAPORAN
+        // ---------------------------
         Route::prefix('laporan')->name('laporan.')->group(function () {
 
             Route::get('/', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'index'])->name('index');
@@ -66,31 +64,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/harian/step-1', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep1'])->name('harian.step1');
             Route::get('/harian/step-2', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep2'])->name('harian.step2');
             Route::get('/harian/step-3', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep3'])->name('harian.step3');
-            });
 
-    //     // ---------------------------
-    //     // FORM (STEP-STEP)
-    //     // ---------------------------
-    //     Route::prefix('form')->name('form.')->group(function () {
-
-    //         Route::get('/harian/step-1', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepHarian1'])->name('harian.step1');
-    //         Route::get('/harian/step-2', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepHarian2'])->name('harian.step2');
-    //         Route::get('/harian/step-3', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepHarian3'])->name('harian.step3');
-
-    //         Route::get('/insiden/step-1', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepInsiden1'])->name('insiden.step1');
-    //         Route::get('/insiden/step-2', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepInsiden2'])->name('insiden.step2');
-    //         Route::get('/insiden/step-3', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepInsiden3'])->name('insiden.step3');
-
-    //         Route::get('/panen/step-1', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepPanen1'])->name('panen.step1');
-    //         Route::get('/panen/step-2', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepPanen2'])->name('panen.step2');
-    //         Route::get('/panen/step-3', [\App\Http\Controllers\Admin\Ayam\FormController::class, 'stepPanen3'])->name('panen.step3');
-    //     });
-
-    //     // ---------------------------
-    //     // PAKAN
-    //     // ---------------------------
-    //     Route::get('/pakan', [\App\Http\Controllers\Admin\Ayam\PakanController::class, 'index'])
-    //         ->name('pakan.index');
+            // DETAIL
+            Route::get('/harian/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianDetail'])->name('harian.detail');
+            Route::get('/panen/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panenDetail'])->name('panen.detail');
+            Route::get('/insiden/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'insidenDetail'])->name('insiden.detail');
+        });
     });
 
 
@@ -98,7 +77,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // INVENTORY
     // ============================
     Route::prefix('inventory')->name('inventory.')->group(function () {
-        
+
         // MAIN PAGE
         Route::get('/', function () {
             return view('pages.admin.inventory.index');
@@ -110,7 +89,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('create');
 
         // ---------------------------
-        // GUDANG 
+        // GUDANG
         // ---------------------------
         Route::prefix('gudang')->name('gudang.')->group(function () {
             Route::get('/', function () {
@@ -123,7 +102,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         // ---------------------------
-        // STOK 
+        // STOK
         // ---------------------------
         Route::prefix('stok')->name('stok.')->group(function () {
             Route::get('/create', function () {
@@ -132,7 +111,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         // ---------------------------
-        // PEMAKAIAN 
+        // PEMAKAIAN
         // ---------------------------
         Route::prefix('pemakaian')->name('pemakaian.')->group(function () {
             Route::get('/', function () {

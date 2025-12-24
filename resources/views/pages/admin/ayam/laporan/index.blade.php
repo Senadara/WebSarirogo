@@ -1,5 +1,4 @@
 <!-- list seluruh laporan peternakan -->
-
 @extends('layouts.admin')
 
 @section('content')
@@ -110,7 +109,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
 
             @foreach ([1,2] as $item)
-            <a href=""
+            <a href="{{ route('admin.ayam.laporan.harian.detail') }}"
                 class="bg-bg-2 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
 
                 <div>
@@ -138,28 +137,29 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
             @foreach ([1,2] as $item)
-            <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between">
+            <a href="{{ route('admin.ayam.laporan.panen.detail') }}" 
+                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between">
 
-                <div>
-                    <p class="text-xs text-gray-500 mb-1">Lahan A</p>
-                    <h4 class="font-bold text-sm mb-1">
-                        {{ now()->subDay()->translatedFormat('l, d F Y') }}
-                    </h4>
-                    <p class="text-xs text-gray-500">14:35</p>
-                </div>
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Lahan A</p>
+                        <h4 class="font-bold text-sm mb-1">
+                            {{ now()->subDay()->translatedFormat('l, d F Y') }}
+                        </h4>
+                        <p class="text-xs text-gray-500">14:35</p>
+                    </div>
 
-                <div class="text-right">
-                    <p class="text-xs font-semibold text-orange-500 mb-1">Laporan Panen</p>
-                    <p class="text-xs text-gray-500 mb-2">1000 Kg</p>
-
-                    <x-ui.Button size="sm" variant="primary" href="#">Pak Hari</x-ui.Button>
-                </div>
-
-            </div>
+                    <div class="text-right">
+                        <p class="text-xs font-semibold text-orange-500 mb-1">Laporan Panen</p>
+                        <p class="text-xs text-gray-500 mb-2">1000 Kg</p>
+                        <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
+                    </div>
+            </a>
             @endforeach
 
         </div>
 
-    </main>
+</div>
+
+</main>
 </div>
 @endsection

@@ -6,7 +6,7 @@
 ])
 
 <div class="bg-primary-1 rounded-2xl p-4 md:p-6 mb-6">
-    {{-- Stepper container with max-width to keep it compact --}}
+    {{-- Stepper container with max-width to keep it comp  act --}}
     <div class="flex items-center justify-center max-w-md mx-auto">
         @for ($i = 1; $i <= $totalSteps; $i++)
             {{-- Step circle with label --}}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Ayam;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class KandangController extends Controller
 {

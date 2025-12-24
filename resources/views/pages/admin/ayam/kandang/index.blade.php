@@ -59,7 +59,7 @@
 
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
-            <x-form.search placeholder="Cari kandang..." />
+            <x-ui.search placeholder="Cari kandang..." />
 
             <!-- filter -->
             <div class="flex items-center gap-3">

@@ -26,4 +26,14 @@ class LaporanController extends Controller
     {
         return view('pages.admin.ayam.laporan.forms.step3-harian');
     }
+
+    public function harianDetail()
+    {
+        return view('pages.admin.ayam.laporan.details.harian-detail');
+    }
+
+    public function panenDetail()
+    {
+        return view('pages.admin.ayam.laporan.details.panen-detail');
+    }
 }

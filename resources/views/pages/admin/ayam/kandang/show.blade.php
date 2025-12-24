@@ -198,7 +198,7 @@
                         size="base" 
                         href="#" 
                         variant="clean" 
-                        class="bg-accent-3 text-bg-1">
+                        class="bg-accent-3 !text-bg-1">
                             Lihat Laporan Terbaru
                         </x-ui.button>
                     </div>
@@ -242,7 +242,7 @@
                         size="base" 
                         variant="clean" 
                         href="#" 
-                        class="bg-red-1 text-bg-1"
+                        class="bg-red-1 !text-bg-1"
                         >
                             Lihat Riwayat Laporan
                         </x-ui.button>

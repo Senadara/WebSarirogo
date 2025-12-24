@@ -3,7 +3,6 @@
 @section('content')
 <div x-data="{ open: false }" class="flex bg-white min-h-screen">
 
-    <!--  -->
     @include('components.layouts.sidebar')
 
     <main class="flex-1 p-6 lg:ml-72">
