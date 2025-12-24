@@ -29,7 +29,7 @@
                         Laporan
                     </a>
                     <span>/</span>
-                    <span class="font-semibold text-gray-900">Detail Kandang</span>
+                    <span class="font-semibold text-gray-900">Detail Laporan</span>
                 </div>
             </div>
 

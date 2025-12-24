@@ -121,7 +121,7 @@
                 </div>
 
                 <div class="text-right">
-                    <p class="text-xs font-semibold text-green-600 mb-1">Laporan Harian</p>
+                    <p class="text-xs font-bold text-green-600 mb-1">Laporan Harian</p>
                     <p class="text-xs text-gray-500 mb-1">Penyiraman & Pemupukan</p>
                     <p class="text-xs font-semibold text-gray-800">Pak Hari</p>
                 </div>
@@ -138,7 +138,7 @@
 
             @foreach ([1,2] as $item)
             <a href="{{ route('admin.ayam.laporan.panen.detail') }}" 
-                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between">
+                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
 
                     <div>
                         <p class="text-xs text-gray-500 mb-1">Lahan A</p>
@@ -149,12 +149,33 @@
                     </div>
 
                     <div class="text-right">
-                        <p class="text-xs font-semibold text-orange-500 mb-1">Laporan Panen</p>
+                        <p class="text-xs font-bold text-orange-500 mb-1">Laporan Panen</p>
                         <p class="text-xs text-gray-500 mb-2">1000 Kg</p>
                         <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
                     </div>
             </a>
             @endforeach
+
+             @foreach ([1,2,3,4] as $item)
+            <a href="{{ route('admin.ayam.laporan.insiden.detail') }}" 
+                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
+
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Lahan A</p>
+                        <h4 class="font-bold text-sm mb-1">
+                            {{ now()->subDay()->translatedFormat('l, d F Y') }}
+                        </h4>
+                        <p class="text-xs text-gray-500">14:35</p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-red-1 mb-1">Laporan Insiden</p>
+                        <p class="text-xs text-gray-500 mb-2">Bencana</p>
+                        <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
+                    </div>
+            </a>
+            @endforeach
+
 
         </div>
 

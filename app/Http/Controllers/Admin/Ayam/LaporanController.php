@@ -36,4 +36,9 @@ class LaporanController extends Controller
     {
         return view('pages.admin.ayam.laporan.details.panen-detail');
     }
+
+     public function insidenDetail()
+    {
+        return view('pages.admin.ayam.laporan.details.insiden-detail');
+    }
 }

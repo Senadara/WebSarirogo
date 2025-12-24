@@ -1,5 +1,4 @@
 <!-- laporan detail panen -->
-<!-- laporan detail harian -->
 @extends('layouts.admin')
 
 @section('content')
@@ -15,7 +14,7 @@
             <button @click="open = true" class="p-2 rounded-lg border bg-white shadow">
                 <img src="/assets/icons/menu.svg" class="w-5 h-5 md:w-6 md:h-6" alt="menu">
             </button>
-            <h1 class="text-base md:text-lg font-bold">Detail Laporan Harian</h1>
+            <h1 class="text-base md:text-lg font-bold">Detail Laporan Panen</h1>
         </div>
 
         {{-- Breadcrumb --}}
@@ -30,7 +29,7 @@
                         Laporan
                     </a>
                     <span>/</span>
-                    <span class="font-semibold text-gray-900">Detail Kandang</span>
+                    <span class="font-semibold text-gray-900">Detail Laporan</span>
                 </div>
             </div>
 
