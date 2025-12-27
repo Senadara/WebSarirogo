@@ -138,7 +138,10 @@
         <div class="space-y-3 lg:space-y-4">
 
             <template x-for="(item, index) in filteredItems" :key="item.sku">
-                <div class="bg-white rounded-xl border border-gray-200 p-3 sm:p-4 lg:p-5 shadow-sm hover:shadow-md transition-shadow group">
+                <div 
+                    class="bg-white rounded-xl border border-gray-200 p-3 sm:p-4 lg:p-5 shadow-sm hover:shadow-md transition-shadow group cursor-pointer"
+                    @click="window.location.href = '/admin/inventory/gudang/show'"
+                >
                     
                     <!-- Mobile Layout (< lg) -->
                     <div class="lg:hidden">
@@ -171,7 +174,7 @@
                                             class="absolute right-0 z-20 mt-1 w-40 bg-white rounded-lg shadow-lg border py-1"
                                             style="display: none;"
                                         >
-                                            <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                            <a href="/admin/inventory/gudang/show" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                                 Lihat Detail
                                             </a>
@@ -269,7 +272,7 @@
                                 class="absolute right-0 top-full z-20 mt-1 w-44 bg-white rounded-lg shadow-lg border py-1"
                                 style="display: none;"
                             >
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                <a href="/admin/inventory/gudang/show" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                     Lihat Detail
                                 </a>
