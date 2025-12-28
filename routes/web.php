@@ -96,9 +96,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 return view('pages.admin.inventory.gudang.index');
             })->name('index');
 
+            // Create must be defined BEFORE {id} to prevent matching
+            Route::get('/create', function () {
+                return view('pages.admin.inventory.gudang.create');
+            })->name('create');
+
+            Route::get('/show', function () {
+                return view('pages.admin.inventory.gudang.show');
+            })->name('show');
+
             Route::get('/{id}', function ($id) {
                 return view('pages.admin.inventory.gudang.show', ['id' => $id]);
-            })->name('show');
+            })->name('detail');
         });
 
         // ---------------------------

@@ -119,7 +119,7 @@
             </div>
 
             <!-- Add Button -->
-            <a href="{{ route('admin.inventory.create') }}" class="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-full font-medium transition shadow-sm shadow-emerald-200">
+            <a href="{{ route('admin.inventory.gudang.create') }}" class="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-full font-medium transition shadow-sm shadow-emerald-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 <span>Tambah Item</span>
             </a>

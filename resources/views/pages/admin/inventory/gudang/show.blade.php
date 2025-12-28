@@ -55,6 +55,12 @@
             </div>
         </div>
 
+        <!-- Page Title -->
+        <div class="mb-6 lg:mb-8 hidden lg:block">
+            <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Informasi Barang</h1>
+            <p class="text-gray-600">Detail lengkap informasi barang yang tersimpan di gudang.</p>
+        </div>
+
         <!-- Product Header -->
         <div class="bg-white rounded-2xl border shadow-sm p-6 lg:p-8 mb-6">
             <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
