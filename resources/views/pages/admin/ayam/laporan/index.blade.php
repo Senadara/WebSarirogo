@@ -67,7 +67,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                 <x-ui.MenuButton
-                    href="{{ route('admin.ayam.laporan.harian.step1') }}"
+                    href="{{ route('admin.ayam.laporan.create', ['type' => 'harian', 'step' => 1]) }}"
                     icon="/assets/icons/note.svg"
                     title="Laporan Harian"
                     description="Catat aktivitas rutin harian di lahan"
@@ -109,7 +109,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
 
             @foreach ([1,2] as $item)
-            <a href="{{ route('admin.ayam.laporan.harian.detail') }}"
+            <a href="{{ route('admin.ayam.laporan.detail', ['type' => 'harian', 'id' => $laporan->id ?? 1]) }}"
                 class="bg-bg-2 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
 
                 <div>
@@ -137,42 +137,42 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
             @foreach ([1,2] as $item)
-            <a href="{{ route('admin.ayam.laporan.panen.detail') }}" 
-                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
+            <a href="{{ route('admin.ayam.laporan.detail', ['type' => 'panen', 'id' => $laporan->id ?? 1]) }}"
+                class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
 
-                    <div>
-                        <p class="text-xs text-gray-500 mb-1">Lahan A</p>
-                        <h4 class="font-bold text-sm mb-1">
-                            {{ now()->subDay()->translatedFormat('l, d F Y') }}
-                        </h4>
-                        <p class="text-xs text-gray-500">14:35</p>
-                    </div>
+                <div>
+                    <p class="text-xs text-gray-500 mb-1">Lahan A</p>
+                    <h4 class="font-bold text-sm mb-1">
+                        {{ now()->subDay()->translatedFormat('l, d F Y') }}
+                    </h4>
+                    <p class="text-xs text-gray-500">14:35</p>
+                </div>
 
-                    <div class="text-right">
-                        <p class="text-xs font-bold text-orange-500 mb-1">Laporan Panen</p>
-                        <p class="text-xs text-gray-500 mb-2">1000 Kg</p>
-                        <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
-                    </div>
+                <div class="text-right">
+                    <p class="text-xs font-bold text-orange-500 mb-1">Laporan Panen</p>
+                    <p class="text-xs text-gray-500 mb-2">1000 Kg</p>
+                    <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
+                </div>
             </a>
             @endforeach
 
-             @foreach ([1,2,3,4] as $item)
-            <a href="{{ route('admin.ayam.laporan.insiden.detail') }}" 
-                    class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
+            @foreach ([1,2,3,4] as $item)
+            <a href="{{ route('admin.ayam.laporan.detail', ['type' => 'insiden', 'id' => $laporan->id ?? 1]) }}"
+                class="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:shadow-md hover:ring-1 hover:ring-accent-2 hover:bg-blue-100  transition">
 
-                    <div>
-                        <p class="text-xs text-gray-500 mb-1">Lahan A</p>
-                        <h4 class="font-bold text-sm mb-1">
-                            {{ now()->subDay()->translatedFormat('l, d F Y') }}
-                        </h4>
-                        <p class="text-xs text-gray-500">14:35</p>
-                    </div>
+                <div>
+                    <p class="text-xs text-gray-500 mb-1">Lahan A</p>
+                    <h4 class="font-bold text-sm mb-1">
+                        {{ now()->subDay()->translatedFormat('l, d F Y') }}
+                    </h4>
+                    <p class="text-xs text-gray-500">14:35</p>
+                </div>
 
-                    <div class="text-right">
-                        <p class="text-xs font-bold text-red-1 mb-1">Laporan Insiden</p>
-                        <p class="text-xs text-gray-500 mb-2">Bencana</p>
-                        <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
-                    </div>
+                <div class="text-right">
+                    <p class="text-xs font-bold text-red-1 mb-1">Laporan Insiden</p>
+                    <p class="text-xs text-gray-500 mb-2">Bencana</p>
+                    <p class="text-xs font-semibold text-gray-800">Bu Sari</p>
+                </div>
             </a>
             @endforeach
 

@@ -11,34 +11,31 @@ class LaporanController extends Controller
         return view('pages.admin.ayam.laporan.index');
     }
 
-    // Harian Form Steps
-    public function harianStep1()
+    public function create(string $type, int $step)
     {
-        return view('pages.admin.ayam.laporan.forms.step1-harian');
+        abort_unless(
+            in_array($type, ['harian', 'panen', 'insiden']),
+            404
+        );
+
+        abort_if($step < 1 || $step > 3, 404);
+
+        return view('pages.admin.ayam.laporan.create', [
+            'type' => $type,
+            'step' => $step,
+        ]);
     }
 
-    public function harianStep2()
+    public function detail(string $type, int $id)
     {
-        return view('pages.admin.ayam.laporan.forms.step2-harian');
-    }
+        abort_unless(
+            in_array($type, ['harian', 'panen', 'insiden']),
+            404
+        );
 
-    public function harianStep3()
-    {
-        return view('pages.admin.ayam.laporan.forms.step3-harian');
-    }
-
-    public function harianDetail()
-    {
-        return view('pages.admin.ayam.laporan.details.harian-detail');
-    }
-
-    public function panenDetail()
-    {
-        return view('pages.admin.ayam.laporan.details.panen-detail');
-    }
-
-     public function insidenDetail()
-    {
-        return view('pages.admin.ayam.laporan.details.insiden-detail');
+        return view("pages.admin.ayam.laporan.details.$type-detail", [
+            'id' => $id,
+            'type' => $type,
+        ]);
     }
 }

@@ -1,57 +1,7 @@
-{{-- Form Step 3 - Laporan Harian: Review --}}
-
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{ open: false }" class="flex bg-white min-h-screen">
 
-    {{-- Sidebar --}}
-    @include('components.layouts.sidebar')
+    <main class="flex-1 min-h-screen">
 
-    <main class="flex-1 p-4 md:p-6 lg:ml-72">
-
-        {{-- Mobile topbar --}}
-        <div class="flex items-center gap-3 mb-4 md:mb-6 lg:hidden">
-            <button @click="open = true" class="p-2 rounded-lg border bg-white shadow">
-                <img src="/assets/icons/menu.svg" class="w-5 h-5 md:w-6 md:h-6" alt="menu">
-            </button>
-            <h1 class="text-base md:text-lg font-bold">Laporan Harian</h1>
-        </div>
-
-        {{-- Breadcrumb --}}
-        <div class="flex flex-wrap items-center justify-between gap-2 md:gap-3 mb-3 md:mb-4">
-            <div class="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-gray-600 overflow-x-auto">
-                <span>🐔</span>
-                <span class="hidden sm:inline">Peternakan</span>
-                <span>&gt;</span>
-                <span>Ayam</span>
-                <span>&gt;</span>
-                <span class="font-semibold text-gray-900 whitespace-nowrap">Laporan Peternakan</span>
-            </div>
-
-            <div class="flex items-center gap-2 md:gap-4">
-                <button class="relative p-1.5 md:p-2 rounded-full hover:bg-gray-100">
-                    <img src="/assets/icons/notification.svg" class="w-4 h-4 md:w-5 md:h-5" alt="notifikasi">
-                    <span class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-2 h-2 md:w-2.5 md:h-2.5 bg-red-500 rounded-full"></span>
-                </button>
-                <button class="p-1.5 md:p-2 rounded-full hover:bg-gray-100">
-                    <img src="/assets/icons/user.svg" class="w-4 h-4 md:w-5 md:h-5" alt="user">
-                </button>
-            </div>
-        </div>
-
-        {{-- Title --}}
-        <h1 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 hidden lg:block">Laporan Harian</h1>
-
-        {{-- Stepper --}}
-        <x-form.stepper 
-            :currentStep="3" 
-            :totalSteps="3" 
-            :labels="['Step 1', 'Step 2', 'Step 3']"
-            description="Periksa kembali data yang diisi lalu simpan laporan agar stok dan catatan harian terupdate otomatis."
-        />
-
-        {{-- Review Section Header --}}
         <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary-3 to-primary-4 flex items-center justify-center">
                 <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,16 +14,16 @@
             </div>
         </div>
 
-        {{-- Main Content Card --}}
+        <!-- main content card -->
         <div class="bg-gradient-to-br from-primary-1/50 to-white rounded-2xl md:rounded-3xl border border-primary-2/50 p-4 md:p-8 mb-6">
             
-            {{-- Content Grid --}}
+            <!-- grid content -->
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8">
 
-                {{-- Left Column: Info & Inventory (3/5 width on desktop) --}}
+                <!-- left column -->
                 <div class="lg:col-span-3 space-y-6">
                     
-                    {{-- Informasi Utama Card --}}
+                    <!-- info utama -->
                     <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
                         <div class="flex items-center gap-2 mb-4">
                             <div class="w-8 h-8 rounded-lg bg-primary-1 flex items-center justify-center">
@@ -111,7 +61,7 @@
                         </div>
                     </div>
 
-                    {{-- Catatan Card --}}
+                    <!-- catatan card -->
                     <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
                         <div class="flex items-center gap-2 mb-3">
                             <div class="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center">
@@ -126,7 +76,7 @@
                         </p>
                     </div>
 
-                    {{-- Rincian Pemakaian Inventaris Card --}}
+                    <!-- rincian pemakaian inventaris card -->
                     <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
                         <div class="flex items-center gap-2 mb-4">
                             <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
@@ -139,7 +89,6 @@
                         </div>
                         
                         <div class="space-y-2">
-                            {{-- Item 1 --}}
                             <div class="flex items-center justify-between py-2.5 md:py-3 px-3 md:px-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
                                 <div class="flex items-center gap-2 md:gap-3">
                                     <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white border flex items-center justify-center">
@@ -158,7 +107,6 @@
                                 </div>
                             </div>
                             
-                            {{-- Item 2 --}}
                             <div class="flex items-center justify-between py-2.5 md:py-3 px-3 md:px-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
                                 <div class="flex items-center gap-2 md:gap-3">
                                     <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white border flex items-center justify-center">
@@ -177,7 +125,6 @@
                                 </div>
                             </div>
 
-                            {{-- Item 3 --}}
                             <div class="flex items-center justify-between py-2.5 md:py-3 px-3 md:px-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
                                 <div class="flex items-center gap-2 md:gap-3">
                                     <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white border flex items-center justify-center">
@@ -199,7 +146,7 @@
                     </div>
                 </div>
 
-                {{-- Right Column: Evidence Image (2/5 width on desktop) --}}
+                <!-- right column -->
                 <div class="lg:col-span-2">
                     <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100 lg:sticky lg:top-6">
                         <div class="flex items-center gap-2 mb-4">
@@ -211,7 +158,7 @@
                             <h3 class="text-base md:text-lg font-bold text-gray-900">Bukti Aktivitas</h3>
                         </div>
                         
-                        {{-- Image Preview with elegant frame --}}
+                        <!-- image preview -->
                         <div class="relative group">
                             <div class="absolute inset-0 bg-gradient-to-br from-primary-3/20 to-primary-4/20 rounded-xl md:rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform"></div>
                             <div class="relative bg-gray-50 rounded-xl md:rounded-2xl overflow-hidden border-2 border-white shadow-md">
@@ -222,7 +169,7 @@
                                         class="w-full h-full object-cover"
                                     >
                                 </div>
-                                {{-- Image overlay info --}}
+                                <!-- overlay image info -->
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 md:p-4">
                                     <p class="text-white text-xs md:text-sm font-medium">bukti_aktivitas.jpg</p>
                                     <p class="text-white/70 text-[10px] md:text-xs">Diambil: 19 Sep 2025, 14:35</p>
@@ -230,7 +177,7 @@
                             </div>
                         </div>
 
-                        {{-- Image Actions --}}
+                        <!-- image action -->
                         <div class="flex gap-2 mt-4">
                             <button class="flex-1 py-2 px-3 rounded-lg bg-gray-100 text-gray-700 text-xs md:text-sm font-medium hover:bg-gray-200 transition flex items-center justify-center gap-1.5">
                                 <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +193,7 @@
                             </button>
                         </div>
 
-                        {{-- Status Indicator --}}
+                        <!-- status indicator -->
                         <div class="mt-6 p-3 md:p-4 bg-gradient-to-r from-primary-1 to-primary-1/50 rounded-xl border border-primary-2">
                             <div class="flex items-center gap-2">
                                 <div class="w-2 h-2 bg-primary-3 rounded-full animate-pulse"></div>
@@ -259,32 +206,3 @@
 
             </div>
         </div>
-
-        {{-- Buttons - Fixed at bottom with card styling --}}
-        <div class="bg-white rounded-xl md:rounded-2xl border border-gray-100 p-4 md:p-6 shadow-sm">
-            <div class="flex flex-col sm:flex-row items-center gap-3">
-                <a 
-                    href="{{ route('admin.ayam.laporan.harian.step2') }}"
-                    class="w-full sm:w-auto order-2 sm:order-1 py-2.5 md:py-3 px-6 md:px-8 rounded-full bg-gray-200 text-gray-700 font-medium text-center text-sm md:text-base hover:bg-gray-300 transition flex items-center justify-center gap-2"
-                >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                    Kembali
-                </a>
-                <div class="flex-1 hidden sm:block"></div>
-                <button 
-                    type="submit"
-                    class="w-full sm:w-auto order-1 sm:order-2 py-2.5 md:py-3 px-8 md:px-12 rounded-full bg-gradient-to-r from-primary-3 to-primary-4 text-white font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-primary-3/30 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    Simpan Laporan
-                </button>
-            </div>
-        </div>
-
-    </main>
-</div>
-@endsection

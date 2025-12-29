@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Ayam\LaporanController;
+use App\Http\Controllers\Admin\Ayam\KandangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +51,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // KANDANG
         // ---------------------------
         Route::prefix('kandang')->name('kandang.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
-            Route::get('/detail', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
+            Route::get('/', [KandangController::class, 'index'])->name('index');
+            Route::get('/detail', [KandangController::class, 'show'])->name('show');
 
             //form create
-            Route::get('/create/{step}', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])
+            Route::get('/create/{step}', [KandangController::class, 'create'])
                 ->whereIn('step', [1, 2, 3])
                 ->name('create');
         });
@@ -63,20 +65,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // ---------------------------
         Route::prefix('laporan')->name('laporan.')->group(function () {
 
-            Route::get('/', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'index'])->name('index');
+            Route::get('/', [LaporanController::class, 'index'])->name('index');
 
-            // HARIAN FORM STEPS
-            Route::get('/harian/step-1', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep1'])->name('harian.step1');
-            Route::get('/harian/step-2', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep2'])->name('harian.step2');
-            Route::get('/harian/step-3', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianStep3'])->name('harian.step3');
+            Route::get('/create/{type}/step/{step}', [LaporanController::class, 'create'])
+                ->name('create');
 
-            // DETAIL
-            Route::get('/harian/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'harianDetail'])->name('harian.detail');
-            Route::get('/panen/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'panenDetail'])->name('panen.detail');
-            Route::get('/insiden/detail', [\App\Http\Controllers\Admin\Ayam\LaporanController::class, 'insidenDetail'])->name('insiden.detail');
+            Route::get('/{type}/{id}', [LaporanController::class, 'detail'])
+                ->name('detail');
         });
     });
-
 
     // ============================
     // INVENTORY
