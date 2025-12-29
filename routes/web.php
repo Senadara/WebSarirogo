@@ -51,6 +51,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('kandang')->name('kandang.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'index'])->name('index');
             Route::get('/detail', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'show'])->name('show');
+
+            //form create
+            Route::get('/create/{step}', [\App\Http\Controllers\Admin\Ayam\KandangController::class, 'create'])
+                ->whereIn('step', [1, 2, 3])
+                ->name('create');
         });
 
         // ---------------------------

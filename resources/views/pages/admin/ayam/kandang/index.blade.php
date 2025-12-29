@@ -69,11 +69,13 @@
                 </button>
 
                 <!-- implement component -->
-                <x-ui.Button size="base" variant="primary" href="#">
+                <x-ui.Button
+                    size="base"
+                    variant="primary"
+                    href="{{ route('admin.ayam.kandang.create', 1) }}">
                     <img src="/assets/icons/add-square.svg" class="w-4 h-4 mr-2">
-                    Tambah Lahan
+                    Tambah Kandang
                 </x-ui.Button>
-
             </div>
         </div>
 

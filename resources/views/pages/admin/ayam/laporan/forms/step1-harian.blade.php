@@ -88,9 +88,23 @@
             <!-- grid utama -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6"> <!-- list kandang -->
                 <div class="lg:col-span-2"> <!-- SEARCH + FILTER -->
-                    <div class="flex flex-col sm:flex-row gap-3 mb-4"> <x-ui.search placeholder="Cari Kandang..." /> <button class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm hover:bg-gray-100 transition md:ml-auto"> <img src="/assets/icons/filter.svg" class="w-4 h-4"> Filter </button> </div> <!-- scroll area (kandang) --> <x-ui.cardKandang :items="[1,2,3,4,5,6,7,8,9]" /> <!-- mobile desktop -->
-                    <div class="flex sm:hidden gap-2 mt-4 justify-center"> <button class="px-3 py-1 text-sm bg-gray-200 rounded"> Prev </button> <button class="px-3 py-1 text-sm bg-primary-3 text-white rounded"> 1 </button> <button class="px-3 py-1 text-sm bg-gray-300 rounded"> Next </button> </div> <!-- desktop paginate -->
-                    <div class="hidden sm:flex gap-2 mt-4 justify-center"> <button class="px-3 py-1 text-sm bg-gray-200 rounded"> Prev </button> <button class="px-3 py-1 text-sm bg-primary-3 text-white rounded"> 1 </button> <button class="px-3 py-1 text-sm bg-gray-300 rounded"> 2 </button> <button class="px-3 py-1 text-sm bg-gray-300 rounded"> 3 </button> <button class="px-3 py-1 text-sm bg-gray-300 rounded"> Next </button> </div>
+                    <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                        <x-ui.search placeholder="Cari Kandang..." />
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm hover:bg-gray-100 transition md:ml-auto">
+                            <img src="/assets/icons/filter.svg" class="w-4 h-4"> Filter </button>
+                    </div> <!-- scroll area (kandang) -->
+                    <x-ui.cardKandang :items="[1,2,3,4,5,6,7,8,9]" /> <!-- mobile desktop -->
+                    <div class="flex sm:hidden gap-2 mt-4 justify-center">
+                        <button class="px-3 py-1 text-sm bg-gray-200 rounded"> Prev </button>
+                        <button class="px-3 py-1 text-sm bg-primary-3 text-white rounded"> 1 </button>
+                        <button class="px-3 py-1 text-sm bg-gray-300 rounded"> Next </button>
+                    </div> <!-- desktop paginate -->
+                    <div class="hidden sm:flex gap-2 mt-4 justify-center"> <button class="px-3 py-1 text-sm bg-gray-200 rounded"> Prev </button>
+                        <button class="px-3 py-1 text-sm bg-primary-3 text-white rounded"> 1 </button>
+                        <button class="px-3 py-1 text-sm bg-gray-300 rounded"> 2 </button>
+                        <button class="px-3 py-1 text-sm bg-gray-300 rounded"> 3 </button>
+                        <button class="px-3 py-1 text-sm bg-gray-300 rounded"> Next </button>
+                    </div>
                 </div> <!-- kanan, form aktivitas -->
                 <div class="bg-blue-50 rounded-xl p-6">
                     <h3 class="font-bold mb-4">Pilih Kandang & Aktivitas</h3>
@@ -103,20 +117,18 @@
         {{-- Buttons Card --}}
         <div class="bg-white rounded-xl md:rounded-2xl border border-gray-100 p-4 md:p-6 shadow-sm">
             <div class="flex flex-col sm:flex-row items-center gap-3">
-                <a 
+                <a
                     href="{{ route('admin.ayam.laporan.index') }}"
-                    class="w-full sm:w-auto order-2 sm:order-1 py-2.5 md:py-3 px-6 md:px-8 rounded-full bg-gray-200 text-gray-700 font-medium text-center text-sm md:text-base hover:bg-gray-300 transition flex items-center justify-center gap-2"
-                >
+                    class="w-full sm:w-auto order-2 sm:order-1 py-2.5 md:py-3 px-6 md:px-8 rounded-full bg-gray-200 text-gray-700 font-medium text-center text-sm md:text-base hover:bg-gray-300 transition flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                     Kembali
                 </a>
                 <div class="flex-1 hidden sm:block"></div>
-                <a 
+                <a
                     href="{{ route('admin.ayam.laporan.harian.step2') }}"
-                    class="w-full sm:w-auto order-1 sm:order-2 py-2.5 md:py-3 px-8 md:px-12 rounded-full bg-gradient-to-r from-primary-3 to-primary-4 text-white font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-primary-3/30 transition-all duration-300 flex items-center justify-center gap-2"
-                >
+                    class="w-full sm:w-auto order-1 sm:order-2 py-2.5 md:py-3 px-8 md:px-12 rounded-full bg-gradient-to-r from-primary-3 to-primary-4 text-white font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-primary-3/30 transition-all duration-300 flex items-center justify-center gap-2">
                     Selanjutnya
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
