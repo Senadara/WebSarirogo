@@ -137,10 +137,10 @@
         <!-- Inventory List -->
         <div class="space-y-3 lg:space-y-4">
 
-            <template x-for="(item, index) in filteredItems" :key="item.sku">
+            <template x-for="(item, index) in filteredItems" :key="item.id">
                 <div 
                     class="bg-white rounded-xl border border-gray-200 p-3 sm:p-4 lg:p-5 shadow-sm hover:shadow-md transition-shadow group cursor-pointer"
-                    @click="window.location.href = '/admin/inventory/gudang/show'"
+                    @click="window.location.href = '/admin/inventory/gudang/' + item.id"
                 >
                     
                     <!-- Mobile Layout (< lg) -->
@@ -162,7 +162,7 @@
                                     <!-- Action Dropdown -->
                                     <div class="relative flex-shrink-0">
                                         <button 
-                                            @click="toggleAction(index)" 
+                                            @click.stop="toggleAction(index)" 
                                             class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition"
                                         >
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
@@ -174,23 +174,23 @@
                                             class="absolute right-0 z-20 mt-1 w-40 bg-white rounded-lg shadow-lg border py-1"
                                             style="display: none;"
                                         >
-                                            <a href="/admin/inventory/gudang/show" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                            <a :href="'/admin/inventory/gudang/' + item.id" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                                 Lihat Detail
                                             </a>
-                                            <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                            <a :href="'/admin/inventory/gudang/' + item.id + '/edit'" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                                 Edit Item
                                             </a>
-                                            <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50">
+                                            <a :href="'/admin/inventory/stok/create?item=' + item.id" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                                                 Tambah Stok
                                             </a>
                                             <hr class="my-1">
-                                            <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                            <button @click.stop="deleteItem(item)" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                                 Hapus
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@
                         <!-- Action -->
                         <div class="col-span-1 flex justify-end relative">
                             <button 
-                                @click="toggleAction(index)" 
+                                @click.stop="toggleAction(index)" 
                                 class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
@@ -272,23 +272,23 @@
                                 class="absolute right-0 top-full z-20 mt-1 w-44 bg-white rounded-lg shadow-lg border py-1"
                                 style="display: none;"
                             >
-                                <a href="/admin/inventory/gudang/show" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                <a :href="'/admin/inventory/gudang/' + item.id" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                     Lihat Detail
                                 </a>
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                <a :href="'/admin/inventory/gudang/' + item.id + '/edit'" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                     Edit Item
                                 </a>
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50">
+                                <a :href="'/admin/inventory/stok/create?item=' + item.id" @click.stop class="flex items-center gap-2 px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                                     Tambah Stok
                                 </a>
                                 <hr class="my-1">
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                <button @click.stop="deleteItem(item)" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                     Hapus
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -347,6 +347,7 @@ function gudangPage() {
         
         items: [
             {
+                id: 1,
                 name: 'Pupuk NPK Premium',
                 sku: 'SKU-4921',
                 category: 'Pupuk',
@@ -365,6 +366,7 @@ function gudangPage() {
                 lastUpdate: '2 jam yang lalu'
             },
             {
+                id: 2,
                 name: 'Set Sekop Tangan Pro',
                 sku: 'SKU-8821',
                 category: 'Peralatan',
@@ -383,6 +385,7 @@ function gudangPage() {
                 lastUpdate: 'Kemarin'
             },
             {
+                id: 3,
                 name: 'Benih Jagung Hibrida',
                 sku: 'SKU-3320',
                 category: 'Bibit',
@@ -401,6 +404,7 @@ function gudangPage() {
                 lastUpdate: '3 hari yang lalu'
             },
             {
+                id: 4,
                 name: 'Pakan Ternak Organik',
                 sku: 'SKU-7721',
                 category: 'Pakan',
@@ -419,6 +423,7 @@ function gudangPage() {
                 lastUpdate: '1 minggu yang lalu'
             },
             {
+                id: 5,
                 name: 'Jagung Hasil Panen',
                 sku: 'SKU-9901',
                 category: 'Panen',
@@ -456,6 +461,20 @@ function gudangPage() {
         
         toggleAction(index) {
             this.activeAction = this.activeAction === index ? null : index;
+        },
+        
+        deleteItem(item) {
+            this.activeAction = null;
+            if (confirm('Apakah Anda yakin ingin menghapus "' + item.name + '"?')) {
+                // Untuk sementara hapus dari array (dummy)
+                // Nanti bisa diganti dengan API call ke backend
+                const index = this.items.findIndex(i => i.id === item.id);
+                if (index > -1) {
+                    this.items.splice(index, 1);
+                    // Tampilkan notifikasi berhasil
+                    alert('Item "' + item.name + '" berhasil dihapus!');
+                }
+            }
         }
     }
 }

@@ -101,6 +101,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 return view('pages.admin.inventory.gudang.create');
             })->name('create');
 
+            // Edit route
+            Route::get('/edit', function () {
+                return view('pages.admin.inventory.gudang.edit');
+            })->name('edit');
+
             Route::get('/show', function () {
                 return view('pages.admin.inventory.gudang.show');
             })->name('show');
@@ -108,6 +113,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/{id}', function ($id) {
                 return view('pages.admin.inventory.gudang.show', ['id' => $id]);
             })->name('detail');
+
+            Route::get('/{id}/edit', function ($id) {
+                return view('pages.admin.inventory.gudang.edit', ['id' => $id]);
+            })->name('edit.id');
         });
 
         // ---------------------------
