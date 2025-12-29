@@ -70,7 +70,7 @@
 
             <!-- manage user -->
             <a 
-                href=""
+                href="{{ route('admin.users.index') }}"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition group
                     {{ request()->is('admin/users*') 
                         ? 'bg-primary-2 font-semibold text-black' 
@@ -82,9 +82,9 @@
 
             <!-- riwayat -->
             <a 
-                href=""
+                href="{{ route('admin.activities.index') }}"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition group
-                    {{ request()->is('admin/riwayat*') 
+                    {{ request()->is('admin/activities*') 
                         ? 'bg-primary-2 font-semibold text-black' 
                         : 'text-text-4 hover:bg-primary-2' }}"
             >
