@@ -150,4 +150,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
             })->name('detail');
         });
     });
+
+    // ============================
+    // USER MANAGEMENT
+    // ============================
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', function () {
+            return view('pages.admin.users.index');
+        })->name('index');
+    });
+
+    // ============================
+    // ACTIVITY HISTORY
+    // ============================
+    Route::prefix('activities')->name('activities.')->group(function () {
+        Route::get('/', function () {
+            return view('pages.admin.activities.index');
+        })->name('index');
+    });
 });
