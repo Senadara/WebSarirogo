@@ -1,3 +1,7 @@
+@php
+    $title = $mode === 'edit' ? 'Form Edit Kandang' : 'Form Tambah Kandang';
+@endphp
+
 @extends('layouts.admin')
 
 @section('content')
@@ -20,11 +24,11 @@
             <button @click="open = true" class="p-2 rounded-lg border bg-white shadow">
                 <img src="/assets/icons/menu.svg" class="w-6 h-6">
             </button>
-            <h1 class="text-lg font-bold">Form Tambah Kandang</h1>
+            <h1 class="text-lg font-bold">{{ $title }}</h1>
         </div>
 
         <h1 class="text-4xl font-bold mb-4 hidden lg:block">
-            Form Tambah Kandang
+            {{ $title }}
         </h1>
 
         <!-- breadcrump -->
@@ -34,7 +38,7 @@
                 <span>/</span>
                 <a href="{{ route('admin.ayam.index') }}">Dashboard</a>
                 <span>/</span>
-                <span class="font-semibold text-gray-900">Tambah Kandang</span>
+                <span class="font-semibold text-gray-900">{{ $mode === 'edit' ? 'Edit Kandang' : 'Tambah Kandang' }}</span>
             </div>
         </div>
 
@@ -55,9 +59,11 @@
                 <!-- kembali -->
                 <a
                     href="{{ $step == 1
-                ? route('admin.ayam.kandang.index')
-                : route('admin.ayam.kandang.create', $step - 1)
-            }}"
+                        ? route('admin.ayam.kandang.index')
+                        : ($mode === 'edit'
+                            ? route('admin.ayam.kandang.edit', [$kandang['id'], $step - 1])
+                            : route('admin.ayam.kandang.create', $step - 1))
+                    }}"
                     class="w-full sm:w-auto order-2 sm:order-1 py-2.5 md:py-3 px-6 md:px-8 rounded-full bg-gray-200 text-gray-700 font-medium text-center text-sm md:text-base hover:bg-gray-300 transition flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -70,9 +76,11 @@
                 <!-- next -->
                 <a
                     href="{{ $step < 3
-        ? route('admin.ayam.kandang.create', $step + 1)
-        : route('admin.ayam.kandang.index')
-    }}"
+                        ? ($mode === 'edit'
+                            ? route('admin.ayam.kandang.edit', [$kandang->id, $step + 1])
+                            : route('admin.ayam.kandang.create', $step + 1))
+                        : route('admin.ayam.kandang.index')
+                    }}"
                     @if($step==3)
                     @click.prevent="submitForm"
                     @endif
@@ -107,7 +115,10 @@
                 </h2>
 
                 <p class="text-sm text-gray-600 mt-2">
-                    kandang baru telah berhasil ditambahkan.
+                    {{ $mode === 'edit'
+                        ? 'Data kandang berhasil diperbarui.'
+                        : 'Kandang baru telah berhasil ditambahkan.'
+                    }}
                 </p>
 
                 <p class="text-xs text-gray-400 mt-4">

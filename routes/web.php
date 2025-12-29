@@ -58,6 +58,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/create/{step}', [KandangController::class, 'create'])
                 ->whereIn('step', [1, 2, 3])
                 ->name('create');
+
+            //form edit route
+            Route::get('/{kandang}/edit/{step}', [KandangController::class, 'edit'])
+                ->whereIn('step', [1, 2, 3])
+                ->name('edit');
         });
 
         // ---------------------------

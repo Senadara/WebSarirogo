@@ -75,7 +75,7 @@
                     variant="primary_1" />
 
                 <x-ui.MenuButton
-                    href=""
+                    href="{{ route('admin.ayam.laporan.create', ['type' => 'panen', 'step' => 1]) }}"
                     icon="/assets/icons/boxx.svg"
                     title="Laporan Panen"
                     description="Rekap hasil panen dan distribusinya"

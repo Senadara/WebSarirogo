@@ -16,10 +16,12 @@ class KandangController extends Controller
         return view('pages.admin.ayam.kandang.show');
     }
 
-    public function create(int $step)
+   public function create(int $step)
     {
         return view('pages.admin.ayam.kandang.forms.form', [
-            'step' => $step
+            'step' => $step,
+            'mode' => 'create',
+            'kandang' => null,
         ]);
     }
 }
