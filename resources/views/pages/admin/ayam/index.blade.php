@@ -56,116 +56,94 @@
             <div class="absolute bottom-0 left-1/2 w-32 h-32 bg-white/5 rounded-full translate-y-1/2 hidden sm:block"></div>
         </div>
 
-        <!-- Quick Stats Row -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-            <div class="bg-white border rounded-xl p-3 sm:p-4 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs text-gray-500 truncate">Populasi</p>
-                        <p class="text-lg sm:text-xl font-bold text-gray-900">1,245</p>
-                        <p class="text-xs text-emerald-600">+12%</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white border rounded-xl p-3 sm:p-4 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                        </svg>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs text-gray-500 truncate">Produksi Telur</p>
-                        <p class="text-lg sm:text-xl font-bold text-gray-900">856</p>
-                        <p class="text-xs text-blue-600">+8%</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white border rounded-xl p-3 sm:p-4 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs text-gray-500 truncate">Produktif</p>
-                        <p class="text-lg sm:text-xl font-bold text-gray-900">1,200</p>
-                        <p class="text-xs text-purple-600">96%</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white border rounded-xl p-3 sm:p-4 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                        </svg>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs text-gray-500 truncate">Sakit</p>
-                        <p class="text-lg sm:text-xl font-bold text-gray-900">5</p>
-                        <p class="text-xs text-red-600">Perawatan</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cuaca & Alerts Row -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 1: CUACA & PERINGATAN -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
             <!-- Cuaca Saat Ini (2/3) -->
             <div class="lg:col-span-2 bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-base sm:text-lg font-semibold text-gray-800">Cuaca Saat Ini</h3>
-                    <a href="#" class="text-sm text-primary-4 hover:text-primary-5 font-medium">Lihat Laporan Cuaca</a>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-6">
-                    <!-- Weather Icon & Temp -->
-                    <div class="flex items-center gap-4">
-                        <img src="/assets/icons/matahari.svg" class="w-16 h-16 sm:w-20 sm:h-20" alt="cuaca">
-                        <div>
-                            <p class="text-3xl sm:text-4xl font-bold text-gray-900">28°C</p>
-                            <p class="text-sm text-gray-500">Cerah</p>
-                        </div>
-                    </div>
-                    <!-- Weather Details -->
-                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div class="flex items-center justify-between sm:flex-col sm:items-start p-3 bg-gray-50 rounded-xl">
-                            <span class="text-sm text-gray-500">Kelembaban</span>
-                            <span class="text-lg font-bold text-gray-900">65%</span>
-                        </div>
-                        <div class="flex items-center justify-between sm:flex-col sm:items-start p-3 bg-gray-50 rounded-xl">
-                            <span class="text-sm text-gray-500">Angin</span>
-                            <span class="text-lg font-bold text-gray-900">12 km/h</span>
-                        </div>
-                        <div class="flex items-center justify-between sm:flex-col sm:items-start p-3 bg-gray-50 rounded-xl">
-                            <span class="text-sm text-gray-500">Hujan</span>
-                            <span class="text-lg font-bold text-gray-900">0 mm</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Weather Alert -->
-                <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center shrink-0">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                        </svg>
-                    </div>
                     <div>
-                        <p class="text-sm font-semibold text-amber-800">Hujan ringan sore hari</p>
-                        <p class="text-xs text-amber-600">periksa ventilasi kandang.</p>
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800">Prakiraan Cuaca</h3>
+                        <p class="text-xs text-gray-500">Data BMKG - Update terakhir {{ now()->format('H:i') }}</p>
+                    </div>
+                    <a href="https://www.bmkg.go.id" target="_blank" class="text-sm text-primary-4 hover:text-primary-5 font-medium flex items-center gap-1">
+                        <span>BMKG</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+                
+                <!-- Current Weather -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-4 pb-4 border-b">
+                    <div class="flex items-center gap-4">
+                        <img src="/assets/icons/matahari.svg" class="w-14 h-14 sm:w-16 sm:h-16" alt="cuaca">
+                        <div>
+                            <p class="text-sm text-gray-500">Sekarang</p>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">28°C</p>
+                            <p class="text-sm text-gray-600">Cerah Berawan</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 grid grid-cols-3 gap-2 sm:gap-3">
+                        <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
+                            <p class="text-xs text-gray-500">Kelembaban</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">65%</p>
+                        </div>
+                        <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
+                            <p class="text-xs text-gray-500">Angin</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">12 km/h</p>
+                        </div>
+                        <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
+                            <p class="text-xs text-gray-500">Hujan</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">0 mm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forecast Next 6 Hours -->
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Prakiraan 6 Jam Kedepan</p>
+                <div class="grid grid-cols-6 gap-2">
+                    <!-- +1 Hour -->
+                    <div class="p-2 bg-gray-50 rounded-xl text-center">
+                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHour()->format('H:i') }}</p>
+                        <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
+                        <p class="text-sm font-bold text-gray-900">28°C</p>
+                    </div>
+                    <!-- +2 Hours -->
+                    <div class="p-2 bg-gray-50 rounded-xl text-center">
+                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(2)->format('H:i') }}</p>
+                        <svg class="w-7 h-7 mx-auto mb-1 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                        <p class="text-sm font-bold text-gray-900">29°C</p>
+                    </div>
+                    <!-- +3 Hours - Rain Warning -->
+                    <div class="p-2 bg-blue-100 rounded-xl text-center border border-blue-200">
+                        <p class="text-xs font-medium text-blue-700 mb-1">{{ now()->addHours(3)->format('H:i') }}</p>
+                        <svg class="w-7 h-7 mx-auto mb-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.92 7.02C17.45 4.18 14.97 2 12 2 9.82 2 7.83 3.18 6.78 5.06 4.09 5.41 2 7.74 2 10.5 2 13.53 4.47 16 7.5 16h10c2.48 0 4.5-2.02 4.5-4.5 0-2.34-1.79-4.27-4.08-4.48z"/><circle cx="8" cy="19" r="1.5"/><circle cx="12" cy="21" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg>
+                        <p class="text-sm font-bold text-blue-700">26°C</p>
+                    </div>
+                    <!-- +4 Hours -->
+                    <div class="p-2 bg-blue-50 rounded-xl text-center">
+                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(4)->format('H:i') }}</p>
+                        <svg class="w-7 h-7 mx-auto mb-1 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.92 7.02C17.45 4.18 14.97 2 12 2 9.82 2 7.83 3.18 6.78 5.06 4.09 5.41 2 7.74 2 10.5 2 13.53 4.47 16 7.5 16h10c2.48 0 4.5-2.02 4.5-4.5 0-2.34-1.79-4.27-4.08-4.48z"/><circle cx="10" cy="19" r="1"/><circle cx="14" cy="20" r="1"/></svg>
+                        <p class="text-sm font-bold text-gray-900">27°C</p>
+                    </div>
+                    <!-- +5 Hours -->
+                    <div class="p-2 bg-gray-50 rounded-xl text-center">
+                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(5)->format('H:i') }}</p>
+                        <svg class="w-7 h-7 mx-auto mb-1 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                        <p class="text-sm font-bold text-gray-900">28°C</p>
+                    </div>
+                    <!-- +6 Hours -->
+                    <div class="p-2 bg-gray-50 rounded-xl text-center">
+                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(6)->format('H:i') }}</p>
+                        <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
+                        <p class="text-sm font-bold text-gray-900">27°C</p>
                     </div>
                 </div>
             </div>
 
             <!-- Recent Alerts (1/3) -->
             <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm">
-                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Recent Alerts</h3>
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Peringatan Terkini</h3>
                 <div class="space-y-3">
                     <div class="flex gap-3 items-start p-3 bg-red-50 rounded-xl">
                         <div class="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center shrink-0">
@@ -174,8 +152,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-semibold text-gray-900">Low Feed Stock</p>
-                            <p class="text-xs text-gray-500">Chicken feed below 15%</p>
+                            <p class="text-sm font-semibold text-gray-900">Stok Pakan Menipis</p>
+                            <p class="text-xs text-gray-500">Sisa pakan < 15%</p>
                         </div>
                     </div>
                     <div class="flex gap-3 items-start p-3 bg-amber-50 rounded-xl">
@@ -185,8 +163,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-semibold text-gray-900">Temperature Alert</p>
-                            <p class="text-xs text-gray-500">Catfish pond temperature high</p>
+                            <p class="text-sm font-semibold text-gray-900">Suhu Tinggi</p>
+                            <p class="text-xs text-gray-500">Kandang B: 32°C</p>
                         </div>
                     </div>
                     <div class="flex gap-3 items-start p-3 bg-emerald-50 rounded-xl">
@@ -196,17 +174,22 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-semibold text-gray-900">Harvest Ready</p>
-                            <p class="text-xs text-gray-500">Okra section A ready</p>
+                            <p class="text-sm font-semibold text-gray-900">Vaksinasi Selesai</p>
+                            <p class="text-xs text-gray-500">Kandang A & C</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Menu Section (Full Width) -->
-        <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm mb-6">
-            <h2 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Menu</h2>
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 2: MENU NAVIGASI (PRIORITAS TINGGI) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <div class="bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/30 border border-blue-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-base sm:text-lg font-bold text-gray-800">Menu Manajemen</h2>
+                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">Akses Cepat</span>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <x-ui.MenuButton
                     href="{{ route('admin.ayam.kandang.index') }}"
@@ -219,22 +202,197 @@
                     href="{{ route('admin.ayam.laporan.index') }}"
                     icon="/assets/icons/note.svg"
                     title="Laporan Harian"
-                    description="Catat aktivitas harian dan kondisi tanaman secara rutin"
+                    description="Catat aktivitas harian dan kondisi ternak"
                     iconVariant="yellow"
                     variant="yellow_1" />
                 <x-ui.MenuButton
                     href=""
                     icon="/assets/icons/pakan.svg"
-                    title="Management Pakan"
-                    description="Lihat rekap panen dan analisis perkembangan okra"
+                    title="Manajemen Pakan"
+                    description="Kelola stok dan jadwal pemberian pakan"
                     iconVariant="blue"
                     variant="accent_1" />
             </div>
         </div>
 
-        <!-- Data Harian Section -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 3: INDEKS PERFORMA (PUSAT PERHATIAN) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <div class="bg-gradient-to-br from-white via-emerald-50/30 to-green-50/50 border border-emerald-100 rounded-xl sm:rounded-2xl p-5 sm:p-8 shadow-lg mb-6">
+            <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+                <!-- Left: Large Gauge -->
+                <div class="flex flex-col items-center lg:items-start">
+                    <div class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 shrink-0">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                            <!-- Background circle -->
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E7EB" stroke-width="6"/>
+                            <!-- Progress circle - 90% = 264 * 0.1 = 26.4 offset -->
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="url(#perfGradient)" stroke-width="6" 
+                                stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="26.4"/>
+                            <defs>
+                                <linearGradient id="perfGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="50%" stop-color="#34D399"/>
+                                    <stop offset="100%" stop-color="#6EE7B7"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">90</span>
+                            <span class="text-lg sm:text-xl font-medium text-emerald-600">Poin</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-center lg:text-left">
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Indeks Performa</h2>
+                        <div class="flex items-center justify-center lg:justify-start gap-2 mt-1">
+                            <span class="px-3 py-1 text-sm font-medium bg-emerald-100 text-emerald-700 rounded-full">
+                                Sangat Baik
+                            </span>
+                            <span class="text-xs text-gray-500">Update: {{ now()->format('H:i') }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Key Metrics Grid -->
+                <div class="flex-1 w-full">
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Indikator Utama</p>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                        <!-- FCR -->
+                        <div class="p-3 sm:p-4 bg-white rounded-xl border shadow-sm cursor-pointer hover:shadow-md transition" @click="document.getElementById('chartFCR').scrollIntoView({behavior:'smooth'})">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-medium text-gray-600">FCR</span>
+                            </div>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">1.79</p>
+                            <p class="text-xs text-emerald-600 flex items-center gap-1 mt-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                Di bawah target
+                            </p>
+                        </div>
+                        <!-- HDP -->
+                        <div class="p-3 sm:p-4 bg-white rounded-xl border shadow-sm cursor-pointer hover:shadow-md transition" @click="document.getElementById('chartHDP').scrollIntoView({behavior:'smooth'})">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-medium text-gray-600">HDP</span>
+                            </div>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">93%</p>
+                            <p class="text-xs text-blue-600 flex items-center gap-1 mt-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                +2% vs minggu lalu
+                            </p>
+                        </div>
+                        <!-- HHEP -->
+                        <div class="p-3 sm:p-4 bg-white rounded-xl border shadow-sm cursor-pointer hover:shadow-md transition" @click="document.getElementById('chartHHEP').scrollIntoView({behavior:'smooth'})">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-medium text-gray-600">HHEP</span>
+                            </div>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">91%</p>
+                            <p class="text-xs text-purple-600 flex items-center gap-1 mt-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                +1% vs minggu lalu
+                            </p>
+                        </div>
+                        <!-- Mortalitas -->
+                        <div class="p-3 sm:p-4 bg-white rounded-xl border shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-medium text-gray-600">Mortalitas</span>
+                            </div>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">3</p>
+                            <p class="text-xs text-gray-500 mt-1">0.24% bulan ini</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 4: RINGKASAN POPULASI (COMPACT) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
         <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm mb-6">
-            <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Data Harian</h3>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">Ringkasan Populasi</h3>
+                <span class="text-xs text-gray-500">Data real-time</span>
+            </div>
+            <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-2 sm:gap-3">
+                <!-- Total -->
+                <div class="p-2 sm:p-3 bg-emerald-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Total</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">1,245</p>
+                </div>
+                <!-- Produktif -->
+                <div class="p-2 sm:p-3 bg-blue-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Produktif</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">1,200</p>
+                </div>
+                <!-- Afkir -->
+                <div class="p-2 sm:p-3 bg-amber-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Afkir</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">40</p>
+                </div>
+                <!-- Sakit -->
+                <div class="p-2 sm:p-3 bg-red-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Sakit</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">5</p>
+                </div>
+                <!-- Umur -->
+                <div class="p-2 sm:p-3 bg-purple-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Umur</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">28<span class="text-xs">mgg</span></p>
+                </div>
+                <!-- Berat -->
+                <div class="p-2 sm:p-3 bg-cyan-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Berat</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">1.8<span class="text-xs">kg</span></p>
+                </div>
+                <!-- Produksi -->
+                <div class="p-2 sm:p-3 bg-indigo-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Telur/Hr</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">856</p>
+                </div>
+                <!-- Berat Telur -->
+                <div class="p-2 sm:p-3 bg-green-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Brt Telur</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">62<span class="text-xs">g</span></p>
+                </div>
+                <!-- Pakan -->
+                <div class="p-2 sm:p-3 bg-orange-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Pakan/Hr</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">150<span class="text-xs">kg</span></p>
+                </div>
+                <!-- Mortalitas -->
+                <div class="p-2 sm:p-3 bg-rose-50 rounded-lg text-center">
+                    <p class="text-xs text-gray-500 mb-1">Mati/Bln</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">16</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 4: AKTIVITAS HARIAN -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">Aktivitas Harian</h3>
+                <span class="text-xs text-gray-500">{{ now()->locale('id')->translatedFormat('d M Y') }}</span>
+            </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 <div class="p-3 sm:p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-100">
                     <div class="flex items-center gap-2 mb-2">
@@ -293,29 +451,19 @@
             </div>
         </div>
 
-        <!-- Charts Row 1: Indeks Performa & FCR -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 5: GRAFIK PERFORMA -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        
+        <!-- Charts Row 1: FCR & Mortalitas -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
-            <!-- Indeks Performa -->
-            <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm">
-                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Indeks Performa</h3>
-                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                    <div class="text-center sm:text-left">
-                        <h1 class="text-5xl sm:text-6xl font-bold text-emerald-500">90%</h1>
-                        <p class="text-sm text-gray-500 mt-1">Sangat Baik</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                        <div><span class="text-gray-500">Populasi:</span> <span class="font-semibold">1,245</span></div>
-                        <div><span class="text-gray-500">FCR:</span> <span class="font-semibold">1.82</span></div>
-                        <div><span class="text-gray-500">HD%:</span> <span class="font-semibold">92%</span></div>
-                        <div><span class="text-gray-500">Umur:</span> <span class="font-semibold">28 mgg</span></div>
-                    </div>
-                </div>
-            </div>
-
             <!-- FCR Chart -->
             <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm">
                 <div class="flex items-center justify-between gap-2 mb-4">
-                    <h3 class="text-base sm:text-lg font-semibold text-gray-800">FCR Ayam</h3>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800">FCR Ayam</h3>
+                        <p class="text-xs text-gray-500">Feed Conversion Ratio</p>
+                    </div>
                     <button 
                         @click="showFCRModal = true"
                         class="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-primary-4 bg-primary-1 rounded-lg hover:bg-primary-2 transition shrink-0"
@@ -323,8 +471,7 @@
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                         </svg>
-                        <span class="hidden sm:inline">Edit Grafik</span>
-                        <span class="sm:hidden">Edit</span>
+                        <span class="hidden sm:inline">Edit</span>
                     </button>
                 </div>
                 <div class="h-48 sm:h-56">
@@ -338,6 +485,38 @@
                     <div class="flex items-center gap-1.5">
                         <span class="w-6 h-0.5 bg-red-500"></span>
                         <span class="text-gray-600">Threshold (1.8)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mortalitas Chart -->
+            <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800">Histori Mortalitas</h3>
+                        <p class="text-xs text-gray-500">Kematian ayam per minggu</p>
+                    </div>
+                    <button 
+                        @click="showMortalitasModal = true"
+                        class="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-primary-4 bg-primary-1 rounded-lg hover:bg-primary-2 transition shrink-0"
+                    >
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                        </svg>
+                        <span class="hidden sm:inline">Edit</span>
+                    </button>
+                </div>
+                <div class="h-48 sm:h-56">
+                    <canvas id="chartMortalitas"></canvas>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-4 mt-3 text-xs">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded bg-red-500"></span>
+                        <span class="text-gray-600">Mortalitas</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded bg-gray-300"></span>
+                        <span class="text-gray-600">Target Max</span>
                     </div>
                 </div>
             </div>
@@ -408,28 +587,6 @@
             </div>
         </div>
 
-        <!-- Charts Row 3: Mortalitas -->
-        <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm mb-6">
-            <div class="flex items-center justify-between gap-2 mb-4">
-                <div class="min-w-0">
-                    <h3 class="text-base sm:text-lg font-semibold text-gray-800">Mortalitas</h3>
-                    <p class="text-xs text-gray-500">Jumlah kematian ayam per minggu</p>
-                </div>
-                <button 
-                    @click="showMortalitasModal = true"
-                    class="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-primary-4 bg-primary-1 rounded-lg hover:bg-primary-2 transition shrink-0"
-                >
-                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                    </svg>
-                    <span class="hidden sm:inline">Edit Grafik</span>
-                    <span class="sm:hidden">Edit</span>
-                </button>
-            </div>
-            <div class="h-48 sm:h-56">
-                <canvas id="chartMortalitas"></canvas>
-            </div>
-        </div>
 
     </main>
 
