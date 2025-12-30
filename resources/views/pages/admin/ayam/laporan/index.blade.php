@@ -83,7 +83,7 @@
                     variant="yellow_1" />
 
                 <x-ui.MenuButton
-                    href=""
+                    href="{{ route('admin.ayam.laporan.create', ['type' => 'insiden', 'step' => 1]) }}"
                     icon="/assets/icons/add.svg"
                     title="Laporan Insiden"
                     description="Laporkan kejadian tidak terduga"

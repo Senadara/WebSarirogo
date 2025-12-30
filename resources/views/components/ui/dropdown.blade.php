@@ -40,7 +40,7 @@
             ]) }}
         >
             <option value="" disabled {{ old($name, $selected) ? '' : 'selected' }}>
-                Pilih fase ayam
+                Pilih
             </option>
 
             @foreach ($options as $value => $labelOption)
