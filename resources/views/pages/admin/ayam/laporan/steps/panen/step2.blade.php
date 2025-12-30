@@ -18,15 +18,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <!-- nama kandang -->
             <x-ui.input
                 required
                 label="Jumlah Panen Total (butir)"
                 name="jumlah_panen_total"
                 placeholder="Contoh: 100"
                 value="{{ old('jumlah_panen_total', $kandang['jumlah_panen_total'] ?? '') }}" />
-
-            <!-- tipe kandang -->
+                
             <x-ui.input
                 required
                 label="Berat Panen Total (kg)"
@@ -34,7 +32,6 @@
                 placeholder="Contoh: 100"
                 value="{{ old('berat_panen_total', $kandang['berat_panen_total'] ?? '') }}" />
 
-            <!-- lokasi -->
             <x-ui.input
                 required
                 label="Jumlah Panen Grade A (kg)"
