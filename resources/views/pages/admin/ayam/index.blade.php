@@ -65,7 +65,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold text-gray-800">Prakiraan Cuaca</h3>
-                        <p class="text-xs text-gray-500">Data BMKG - Update terakhir {{ now()->format('H:i') }}</p>
+                        <p class="text-xs text-gray-500">Data BMKG {{ $cuaca['location'] ?? 'Sarirogo' }} - Update {{ $cuaca['last_update'] ?? now()->format('H:i') }}</p>
                     </div>
                     <a href="https://www.bmkg.go.id" target="_blank" class="text-sm text-primary-4 hover:text-primary-5 font-medium flex items-center gap-1">
                         <span>BMKG</span>
@@ -76,68 +76,62 @@
                 <!-- Current Weather -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-4 pb-4 border-b">
                     <div class="flex items-center gap-4">
-                        <img src="/assets/icons/matahari.svg" class="w-14 h-14 sm:w-16 sm:h-16" alt="cuaca">
+                        @php 
+                            $weatherIcon = $cuaca['current']['icon'] ?? 'cerah';
+                            $iconMap = [
+                                'cerah' => '/assets/icons/matahari.svg',
+                                'cerah-berawan' => '/assets/icons/matahari.svg',
+                                'berawan' => '/assets/icons/matahari.svg',
+                            ];
+                        @endphp
+                        <img src="{{ $iconMap[$weatherIcon] ?? '/assets/icons/matahari.svg' }}" class="w-14 h-14 sm:w-16 sm:h-16" alt="cuaca">
                         <div>
                             <p class="text-sm text-gray-500">Sekarang</p>
-                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">28°C</p>
-                            <p class="text-sm text-gray-600">Cerah Berawan</p>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $cuaca['current']['temperature'] ?? 28 }}°C</p>
+                            <p class="text-sm text-gray-600">{{ $cuaca['current']['description'] ?? 'Cerah' }}</p>
                         </div>
                     </div>
                     <div class="flex-1 grid grid-cols-3 gap-2 sm:gap-3">
                         <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
                             <p class="text-xs text-gray-500">Kelembaban</p>
-                            <p class="text-base sm:text-lg font-bold text-gray-900">65%</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">{{ $cuaca['current']['humidity'] ?? 65 }}%</p>
                         </div>
                         <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
                             <p class="text-xs text-gray-500">Angin</p>
-                            <p class="text-base sm:text-lg font-bold text-gray-900">12 km/h</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">{{ $cuaca['current']['wind_speed'] ?? 10 }} km/h</p>
                         </div>
                         <div class="p-2 sm:p-3 bg-gray-50 rounded-lg text-center">
-                            <p class="text-xs text-gray-500">Hujan</p>
-                            <p class="text-base sm:text-lg font-bold text-gray-900">0 mm</p>
+                            <p class="text-xs text-gray-500">Awan</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-900">{{ $cuaca['current']['cloud_cover'] ?? 0 }}%</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Forecast Next 6 Hours -->
-                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Prakiraan 6 Jam Kedepan</p>
+                <!-- Forecast Next Hours -->
+                <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">Prakiraan Berikutnya</p>
                 <div class="grid grid-cols-6 gap-2">
-                    <!-- +1 Hour -->
-                    <div class="p-2 bg-gray-50 rounded-xl text-center">
-                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHour()->format('H:i') }}</p>
-                        <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
-                        <p class="text-sm font-bold text-gray-900">28°C</p>
-                    </div>
-                    <!-- +2 Hours -->
-                    <div class="p-2 bg-gray-50 rounded-xl text-center">
-                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(2)->format('H:i') }}</p>
-                        <svg class="w-7 h-7 mx-auto mb-1 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-                        <p class="text-sm font-bold text-gray-900">29°C</p>
-                    </div>
-                    <!-- +3 Hours - Rain Warning -->
-                    <div class="p-2 bg-blue-100 rounded-xl text-center border border-blue-200">
-                        <p class="text-xs font-medium text-blue-700 mb-1">{{ now()->addHours(3)->format('H:i') }}</p>
-                        <svg class="w-7 h-7 mx-auto mb-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.92 7.02C17.45 4.18 14.97 2 12 2 9.82 2 7.83 3.18 6.78 5.06 4.09 5.41 2 7.74 2 10.5 2 13.53 4.47 16 7.5 16h10c2.48 0 4.5-2.02 4.5-4.5 0-2.34-1.79-4.27-4.08-4.48z"/><circle cx="8" cy="19" r="1.5"/><circle cx="12" cy="21" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg>
-                        <p class="text-sm font-bold text-blue-700">26°C</p>
-                    </div>
-                    <!-- +4 Hours -->
-                    <div class="p-2 bg-blue-50 rounded-xl text-center">
-                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(4)->format('H:i') }}</p>
-                        <svg class="w-7 h-7 mx-auto mb-1 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.92 7.02C17.45 4.18 14.97 2 12 2 9.82 2 7.83 3.18 6.78 5.06 4.09 5.41 2 7.74 2 10.5 2 13.53 4.47 16 7.5 16h10c2.48 0 4.5-2.02 4.5-4.5 0-2.34-1.79-4.27-4.08-4.48z"/><circle cx="10" cy="19" r="1"/><circle cx="14" cy="20" r="1"/></svg>
-                        <p class="text-sm font-bold text-gray-900">27°C</p>
-                    </div>
-                    <!-- +5 Hours -->
-                    <div class="p-2 bg-gray-50 rounded-xl text-center">
-                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(5)->format('H:i') }}</p>
-                        <svg class="w-7 h-7 mx-auto mb-1 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-                        <p class="text-sm font-bold text-gray-900">28°C</p>
-                    </div>
-                    <!-- +6 Hours -->
-                    <div class="p-2 bg-gray-50 rounded-xl text-center">
-                        <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours(6)->format('H:i') }}</p>
-                        <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
-                        <p class="text-sm font-bold text-gray-900">27°C</p>
-                    </div>
+                    @forelse(array_slice($cuaca['forecast'] ?? [], 0, 6) as $forecast)
+                        @php
+                            $isRain = str_contains(strtolower($forecast['description'] ?? ''), 'hujan');
+                        @endphp
+                        <div class="p-2 {{ $isRain ? 'bg-blue-100 border border-blue-200' : 'bg-gray-50' }} rounded-xl text-center">
+                            <p class="text-xs font-medium {{ $isRain ? 'text-blue-700' : 'text-gray-600' }} mb-1">{{ $forecast['time'] ?? '--:--' }}</p>
+                            @if($isRain)
+                                <svg class="w-7 h-7 mx-auto mb-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.92 7.02C17.45 4.18 14.97 2 12 2 9.82 2 7.83 3.18 6.78 5.06 4.09 5.41 2 7.74 2 10.5 2 13.53 4.47 16 7.5 16h10c2.48 0 4.5-2.02 4.5-4.5 0-2.34-1.79-4.27-4.08-4.48z"/><circle cx="8" cy="19" r="1.5"/><circle cx="12" cy="21" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg>
+                            @else
+                                <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
+                            @endif
+                            <p class="text-sm font-bold {{ $isRain ? 'text-blue-700' : 'text-gray-900' }}">{{ $forecast['temperature'] ?? '--' }}°C</p>
+                        </div>
+                    @empty
+                        @for($i = 1; $i <= 6; $i++)
+                            <div class="p-2 bg-gray-50 rounded-xl text-center">
+                                <p class="text-xs font-medium text-gray-600 mb-1">{{ now()->addHours($i)->format('H:i') }}</p>
+                                <img src="/assets/icons/matahari.svg" class="w-7 h-7 mx-auto mb-1" alt="cerah">
+                                <p class="text-sm font-bold text-gray-900">--°C</p>
+                            </div>
+                        @endfor
+                    @endforelse
                 </div>
             </div>
 
@@ -145,39 +139,31 @@
             <div class="bg-white border rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-sm">
                 <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Peringatan Terkini</h3>
                 <div class="space-y-3">
-                    <div class="flex gap-3 items-start p-3 bg-red-50 rounded-xl">
-                        <div class="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                            </svg>
+                    @forelse($alerts as $alert)
+                        @php
+                            $colors = [
+                                'danger' => ['bg' => 'bg-red-50', 'icon_bg' => 'bg-red-500', 'border' => 'border-red-100'],
+                                'warning' => ['bg' => 'bg-amber-50', 'icon_bg' => 'bg-amber-500', 'border' => 'border-amber-100'],
+                                'info' => ['bg' => 'bg-blue-50', 'icon_bg' => 'bg-blue-500', 'border' => 'border-blue-100'],
+                            ];
+                            $color = $colors[$alert['type']] ?? $colors['info'];
+                        @endphp
+                        <div class="flex gap-3 items-start p-3 {{ $color['bg'] }} rounded-xl border {{ $color['border'] }}">
+                            <div class="w-8 h-8 rounded-lg {{ $color['icon_bg'] }} flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-900">{{ $alert['title'] }}</p>
+                                <p class="text-xs text-gray-600">{{ $alert['message'] }}</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm font-semibold text-gray-900">Stok Pakan Menipis</p>
-                            <p class="text-xs text-gray-500">Sisa pakan < 15%</p>
+                    @empty
+                        <div class="text-center py-4 text-gray-500 text-sm">
+                            Tidak ada peringatan saat ini
                         </div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 bg-amber-50 rounded-xl">
-                        <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm font-semibold text-gray-900">Suhu Tinggi</p>
-                            <p class="text-xs text-gray-500">Kandang B: 32°C</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 bg-emerald-50 rounded-xl">
-                        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm font-semibold text-gray-900">Vaksinasi Selesai</p>
-                            <p class="text-xs text-gray-500">Kandang A & C</p>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -222,31 +208,51 @@
             <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
                 <!-- Left: Large Gauge -->
                 <div class="flex flex-col items-center lg:items-start">
+                    @php
+                        // Calculate gauge offset: 264 is full circle, lower offset = more filled
+                        $skor = $performa['skor'] ?? 0;
+                        $gaugeOffset = 264 - (264 * ($skor / 100));
+                        
+                        // Determine color based on score
+                        $gaugeColors = match(true) {
+                            $skor >= 75 => ['#10B981', '#34D399', '#6EE7B7'], // Green
+                            $skor >= 50 => ['#F59E0B', '#FBBF24', '#FCD34D'], // Amber
+                            default => ['#EF4444', '#F87171', '#FCA5A5'],      // Red
+                        };
+                    @endphp
                     <div class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 shrink-0">
                         <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                             <!-- Background circle -->
                             <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E7EB" stroke-width="6"/>
-                            <!-- Progress circle - 90% = 264 * 0.1 = 26.4 offset -->
+                            <!-- Progress circle - dynamic based on score -->
                             <circle cx="50" cy="50" r="42" fill="none" stroke="url(#perfGradient)" stroke-width="6" 
-                                stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="26.4"/>
+                                stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="{{ $gaugeOffset }}"/>
                             <defs>
                                 <linearGradient id="perfGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#10B981"/>
-                                    <stop offset="50%" stop-color="#34D399"/>
-                                    <stop offset="100%" stop-color="#6EE7B7"/>
+                                    <stop offset="0%" stop-color="{{ $gaugeColors[0] }}"/>
+                                    <stop offset="50%" stop-color="{{ $gaugeColors[1] }}"/>
+                                    <stop offset="100%" stop-color="{{ $gaugeColors[2] }}"/>
                                 </linearGradient>
                             </defs>
                         </svg>
                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">90</span>
+                            <span class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">{{ $performa['skor'] ?? 0 }}</span>
                             <span class="text-lg sm:text-xl font-medium text-emerald-600">Poin</span>
                         </div>
                     </div>
                     <div class="mt-3 text-center lg:text-left">
                         <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Indeks Performa</h2>
                         <div class="flex items-center justify-center lg:justify-start gap-2 mt-1">
-                            <span class="px-3 py-1 text-sm font-medium bg-emerald-100 text-emerald-700 rounded-full">
-                                Sangat Baik
+                            @php
+                                $statusColor = match($performa['status'] ?? 'Cukup') {
+                                    'Sangat Baik' => 'bg-emerald-100 text-emerald-700',
+                                    'Baik' => 'bg-green-100 text-green-700',
+                                    'Cukup' => 'bg-amber-100 text-amber-700',
+                                    default => 'bg-red-100 text-red-700',
+                                };
+                            @endphp
+                            <span class="px-3 py-1 text-sm font-medium {{ $statusColor }} rounded-full">
+                                {{ $performa['status'] ?? 'Menunggu Data' }}
                             </span>
                             <span class="text-xs text-gray-500">Update: {{ now()->format('H:i') }}</span>
                         </div>
@@ -267,10 +273,13 @@
                                 </div>
                                 <span class="text-xs font-medium text-gray-600">FCR</span>
                             </div>
-                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">1.79</p>
-                            <p class="text-xs text-emerald-600 flex items-center gap-1 mt-1">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                                Di bawah target
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ number_format($performa['fcr'] ?? 0, 2) }}</p>
+                            @php $fcrTrend = $performa['fcr_trend'] ?? ['value' => 0, 'direction' => 'stable']; @endphp
+                            <p class="text-xs {{ ($performa['fcr'] ?? 0) < 2 ? 'text-emerald-600' : 'text-red-600' }} flex items-center gap-1 mt-1">
+                                @if($fcrTrend['direction'] == 'down')
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                @endif
+                                {{ ($performa['fcr'] ?? 0) < 2 ? 'Di bawah target' : 'Di atas target' }}
                             </p>
                         </div>
                         <!-- HDP -->
@@ -283,10 +292,13 @@
                                 </div>
                                 <span class="text-xs font-medium text-gray-600">HDP</span>
                             </div>
-                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">93%</p>
-                            <p class="text-xs text-blue-600 flex items-center gap-1 mt-1">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                                +2% vs minggu lalu
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ number_format($performa['hdp'] ?? 0, 1) }}%</p>
+                            @php $hdpTrend = $performa['hdp_trend'] ?? ['value' => 0, 'direction' => 'stable']; @endphp
+                            <p class="text-xs {{ $hdpTrend['value'] >= 0 ? 'text-blue-600' : 'text-red-600' }} flex items-center gap-1 mt-1">
+                                @if($hdpTrend['direction'] == 'up')
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                @endif
+                                {{ $hdpTrend['value'] >= 0 ? '+' : '' }}{{ $hdpTrend['value'] }}% vs minggu lalu
                             </p>
                         </div>
                         <!-- HHEP -->
@@ -299,10 +311,13 @@
                                 </div>
                                 <span class="text-xs font-medium text-gray-600">HHEP</span>
                             </div>
-                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">91%</p>
-                            <p class="text-xs text-purple-600 flex items-center gap-1 mt-1">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                                +1% vs minggu lalu
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ number_format($performa['hhep'] ?? 0, 1) }}%</p>
+                            @php $hhepTrend = $performa['hhep_trend'] ?? ['value' => 0, 'direction' => 'stable']; @endphp
+                            <p class="text-xs {{ $hhepTrend['value'] >= 0 ? 'text-purple-600' : 'text-red-600' }} flex items-center gap-1 mt-1">
+                                @if($hhepTrend['direction'] == 'up')
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                @endif
+                                {{ $hhepTrend['value'] >= 0 ? '+' : '' }}{{ $hhepTrend['value'] }}% vs minggu lalu
                             </p>
                         </div>
                         <!-- Mortalitas -->
@@ -315,8 +330,8 @@
                                 </div>
                                 <span class="text-xs font-medium text-gray-600">Mortalitas</span>
                             </div>
-                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">3</p>
-                            <p class="text-xs text-gray-500 mt-1">0.24% bulan ini</p>
+                            <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $performa['mortalitas'] ?? 0 }}</p>
+                            <p class="text-xs text-gray-500 mt-1">{{ $performa['mortalitas_persen'] ?? 0 }}% bulan ini</p>
                         </div>
                     </div>
                 </div>
@@ -335,52 +350,52 @@
                 <!-- Total -->
                 <div class="p-2 sm:p-3 bg-emerald-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Total</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">1,245</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ number_format($populasi['total'] ?? 0) }}</p>
                 </div>
                 <!-- Produktif -->
                 <div class="p-2 sm:p-3 bg-blue-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Produktif</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">1,200</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ number_format($populasi['produktif'] ?? 0) }}</p>
                 </div>
                 <!-- Afkir -->
                 <div class="p-2 sm:p-3 bg-amber-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Afkir</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">40</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ number_format($populasi['afkir'] ?? 0) }}</p>
                 </div>
                 <!-- Sakit -->
                 <div class="p-2 sm:p-3 bg-red-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Sakit</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">5</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ number_format($populasi['sakit'] ?? 0) }}</p>
                 </div>
                 <!-- Umur -->
                 <div class="p-2 sm:p-3 bg-purple-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Umur</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">28<span class="text-xs">mgg</span></p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ $populasi['umur'] ?? 0 }}<span class="text-xs">mgg</span></p>
                 </div>
                 <!-- Berat -->
                 <div class="p-2 sm:p-3 bg-cyan-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Berat</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">1.8<span class="text-xs">kg</span></p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ $populasi['berat'] ?? 0 }}<span class="text-xs">kg</span></p>
                 </div>
                 <!-- Produksi -->
                 <div class="p-2 sm:p-3 bg-indigo-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Telur/Hr</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">856</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ number_format($populasi['telur_hari'] ?? 0) }}</p>
                 </div>
                 <!-- Berat Telur -->
                 <div class="p-2 sm:p-3 bg-green-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Brt Telur</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">62<span class="text-xs">g</span></p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ $populasi['berat_telur'] ?? 0 }}<span class="text-xs">g</span></p>
                 </div>
                 <!-- Pakan -->
                 <div class="p-2 sm:p-3 bg-orange-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Pakan/Hr</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">150<span class="text-xs">kg</span></p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ $populasi['pakan_hari'] ?? 0 }}<span class="text-xs">kg</span></p>
                 </div>
                 <!-- Mortalitas -->
                 <div class="p-2 sm:p-3 bg-rose-50 rounded-lg text-center">
                     <p class="text-xs text-gray-500 mb-1">Mati/Bln</p>
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">16</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">{{ $populasi['mortalitas_bulan'] ?? 0 }}</p>
                 </div>
             </div>
         </div>
@@ -538,7 +553,7 @@
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                         </svg>
-                        <span class="hidden sm:inline">Edit Grafik</span>
+                        <span class="hidden sm:inline">Edit</span>
                         <span class="sm:hidden">Edit</span>
                     </button>
                 </div>
@@ -569,7 +584,7 @@
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                         </svg>
-                        <span class="hidden sm:inline">Edit Grafik</span>
+                        <span class="hidden sm:inline">Edit</span>
                         <span class="sm:hidden">Edit</span>
                     </button>
                 </div>
@@ -901,6 +916,22 @@
                     </div>
                 </div>
 
+                <!-- Mode Tampilan -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Mode Tampilan</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <template x-for="mode in viewModes" :key="mode.id">
+                            <button 
+                                @click="mortalitasConfig.viewMode = mode.id"
+                                class="p-3 rounded-xl border-2 transition-all text-center"
+                                :class="mortalitasConfig.viewMode === mode.id ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-gray-300'"
+                            >
+                                <span class="text-sm font-medium text-gray-700" x-text="mode.label"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
                 <!-- Pengaturan Tampilan -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-3">Pengaturan Tampilan</label>
@@ -990,6 +1021,22 @@
                             >
                                 <div x-html="type.icon" class="w-8 h-8 text-gray-600"></div>
                                 <span class="text-xs font-medium text-gray-700" x-text="type.label"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Mode Tampilan -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Mode Tampilan</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <template x-for="mode in viewModes" :key="mode.id">
+                            <button 
+                                @click="fcrConfig.viewMode = mode.id"
+                                class="p-3 rounded-xl border-2 transition-all text-center"
+                                :class="fcrConfig.viewMode === mode.id ? 'border-amber-500 bg-amber-50' : 'border-gray-200 hover:border-gray-300'"
+                            >
+                                <span class="text-sm font-medium text-gray-700" x-text="mode.label"></span>
                             </button>
                         </template>
                     </div>
@@ -1096,10 +1143,16 @@ function ayamDashboard() {
             { id: 'ytd', label: 'Year to Date' }
         ],
         
+        viewModes: [
+            { id: 'average', label: 'Rata-rata' },
+            { id: 'perCage', label: 'Per Kandang' }
+        ],
+        
         // HDP Config
         hdpConfig: {
             chartType: 'line',
             timeRange: '7days',
+            viewMode: 'perCage',
             showGrid: true,
             showPoints: true,
             fillArea: false,
@@ -1110,6 +1163,7 @@ function ayamDashboard() {
         hhepConfig: {
             chartType: 'line',
             timeRange: '7days',
+            viewMode: 'perCage',
             showGrid: true,
             showPoints: true,
             fillArea: false,
@@ -1120,6 +1174,7 @@ function ayamDashboard() {
         fcrConfig: {
             chartType: 'line',
             timeRange: '7days',
+            viewMode: 'average',
             showGrid: true,
             showPoints: true,
             fillArea: true,
@@ -1132,6 +1187,7 @@ function ayamDashboard() {
         mortalitasConfig: {
             chartType: 'bar',
             timeRange: '30days',
+            viewMode: 'average',
             showGrid: true,
             showPoints: false,
             fillArea: false,
@@ -1145,31 +1201,22 @@ function ayamDashboard() {
         mortalitasType: 'bar',
         
         // Kandang list with separate visibility for each chart
-        kandangList: [
-            { id: 1, name: 'Kandang A', color: '#10B981', hdpVisible: true, hhepVisible: true },
-            { id: 2, name: 'Kandang B', color: '#3B82F6', hdpVisible: true, hhepVisible: true },
-            { id: 3, name: 'Kandang C', color: '#F59E0B', hdpVisible: true, hhepVisible: true },
-        ],
+        kandangList: @json($kandangList ?? []),
         
         // Chart instances
         charts: {},
         
-        // Chart data
-        chartData: {
-            labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
-            hdp: {
-                1: [92, 90, 93, 91, 94, 92, 93],
-                2: [88, 89, 87, 90, 88, 91, 89],
-                3: [85, 86, 84, 87, 85, 86, 88]
-            },
-            hhep: {
-                1: [90, 88, 91, 89, 92, 90, 91],
-                2: [86, 87, 85, 88, 86, 89, 87],
-                3: [83, 84, 82, 85, 83, 84, 86]
-            },
-            fcr: [1.85, 1.82, 1.78, 1.80, 1.75, 1.82, 1.79],
-            mortalitas: [3, 2, 4, 1, 2, 1, 3]
-        },
+        // Chart data from controller
+        @php
+            $chartDataForJs = [
+                'labels' => $chartData['labels'] ?? [],
+                'fcr' => $chartData['fcr'] ?? ['average' => [], 'perCage' => []],
+                'mortalitas' => $chartData['mortalitas'] ?? ['average' => [], 'perCage' => []],
+                'hdp' => $chartData['hdp'] ?? ['average' => [], 'perCage' => []],
+                'hhep' => $chartData['hhep'] ?? ['average' => [], 'perCage' => []],
+            ];
+        @endphp
+        chartData: @json($chartDataForJs),
         
         init() {
             // Use setTimeout to ensure Chart.js is fully loaded
@@ -1207,69 +1254,50 @@ function ayamDashboard() {
             const canvas = document.getElementById('chartFCR');
             if (!canvas) return;
             
-            // Properly destroy existing chart using Chart.getChart
             const existingChart = Chart.getChart(canvas);
-            if (existingChart) {
-                existingChart.destroy();
-            }
+            if (existingChart) existingChart.destroy();
             
-            // Determine chart type from config
             const chartType = this.fcrConfig.chartType === 'area' ? 'line' : this.fcrConfig.chartType;
             const fillArea = this.fcrConfig.chartType === 'area' || this.fcrConfig.fillArea;
+            const labels = this.chartData.labels || [];
+            const colors = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444'];
             
-            // Generate labels and data based on time range
-            let labels, fcrData;
-            switch(this.fcrConfig.timeRange) {
-                case 'daily':
-                    labels = ['Hari Ini'];
-                    fcrData = [1.79];
-                    break;
-                case '7days':
-                    labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    fcrData = this.chartData.fcr;
-                    break;
-                case '30days':
-                    labels = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'];
-                    fcrData = [1.85, 1.82, 1.78, 1.76];
-                    break;
-                case '3months':
-                    labels = ['Bulan 1', 'Bulan 2', 'Bulan 3'];
-                    fcrData = [1.90, 1.85, 1.80];
-                    break;
-                case '6months':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-                    fcrData = [1.95, 1.92, 1.88, 1.85, 1.82, 1.79];
-                    break;
-                case 'ytd':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                    fcrData = [2.0, 1.98, 1.95, 1.92, 1.90, 1.88, 1.85, 1.83, 1.81, 1.80, 1.79, 1.78];
-                    break;
-                default:
-                    labels = this.chartData.labels;
-                    fcrData = this.chartData.fcr;
+            let datasets = [];
+            if (this.fcrConfig.viewMode === 'perCage') {
+                const perCageData = this.chartData.fcr?.perCage || {};
+                this.kandangList.forEach((kandang, idx) => {
+                    datasets.push({
+                        label: kandang.name,
+                        data: perCageData[kandang.id] || [],
+                        borderColor: colors[idx % colors.length],
+                        backgroundColor: fillArea ? `${colors[idx % colors.length]}40` : 'transparent',
+                        fill: fillArea,
+                        tension: this.fcrConfig.smoothLine ? 0.4 : 0,
+                        pointRadius: this.fcrConfig.showPoints ? 4 : 0,
+                        borderRadius: chartType === 'bar' ? 4 : 0
+                    });
+                });
+            } else {
+                datasets.push({
+                    label: 'FCR Rata-rata',
+                    data: this.chartData.fcr?.average || [],
+                    borderColor: '#10B981',
+                    backgroundColor: fillArea ? 'rgba(16,185,129,0.3)' : 'rgba(16,185,129,0.1)',
+                    fill: fillArea,
+                    tension: this.fcrConfig.smoothLine ? 0.4 : 0,
+                    pointRadius: this.fcrConfig.showPoints ? 4 : 0,
+                    borderRadius: chartType === 'bar' ? 4 : 0
+                });
             }
             
             this.charts.fcr = new Chart(canvas, {
                 type: chartType,
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'FCR',
-                        data: fcrData,
-                        borderColor: '#10B981',
-                        backgroundColor: fillArea ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.1)',
-                        fill: fillArea,
-                        tension: this.fcrConfig.smoothLine ? 0.4 : 0,
-                        pointRadius: this.fcrConfig.showPoints ? 4 : 0,
-                        pointBackgroundColor: '#10B981',
-                        borderRadius: chartType === 'bar' ? 4 : 0
-                    }]
-                },
+                data: { labels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false },
+                        legend: { display: this.fcrConfig.viewMode === 'perCage' },
                         annotation: this.fcrConfig.showThreshold ? {
                             annotations: {
                                 threshold: {
@@ -1279,25 +1307,13 @@ function ayamDashboard() {
                                     borderColor: '#EF4444',
                                     borderWidth: 2,
                                     borderDash: [5, 5],
-                                    label: {
-                                        display: true,
-                                        content: 'Threshold ' + this.fcrConfig.threshold,
-                                        position: 'end',
-                                        backgroundColor: '#EF4444',
-                                        color: '#fff',
-                                        font: { size: 10 }
-                                    }
+                                    label: { display: true, content: 'Target ' + this.fcrConfig.threshold, position: 'end', backgroundColor: '#EF4444', color: '#fff', font: { size: 10 } }
                                 }
                             }
                         } : {}
                     },
                     scales: {
-                        y: { 
-                            beginAtZero: false,
-                            min: 1.5,
-                            max: 2.2,
-                            grid: { display: this.fcrConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
-                        },
+                        y: { beginAtZero: false, min: 1.5, max: 2.5, grid: { display: this.fcrConfig.showGrid, color: 'rgba(0,0,0,0.05)' } },
                         x: { grid: { display: false } }
                     }
                 }
@@ -1306,148 +1322,104 @@ function ayamDashboard() {
         
         initHDPChart() {
             const canvas = document.getElementById('chartHDP');
-            if (!canvas) {
-                console.error('HDP canvas not found');
-                return;
-            }
+            if (!canvas) return;
             
-            // Properly destroy existing chart using Chart.getChart
             const existingChart = Chart.getChart(canvas);
-            if (existingChart) {
-                existingChart.destroy();
-            }
+            if (existingChart) existingChart.destroy();
             
-            // Determine chart type from config
             const chartType = this.hdpConfig.chartType === 'area' ? 'line' : this.hdpConfig.chartType;
             const fillArea = this.hdpConfig.chartType === 'area' || this.hdpConfig.fillArea;
+            const labels = this.chartData.labels || [];
+            const colors = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444'];
             
-            // Generate labels and data based on time range
-            let labels, hdpData;
-            switch(this.hdpConfig.timeRange) {
-                case 'daily':
-                    labels = ['Hari Ini'];
-                    hdpData = { 1: [93], 2: [89], 3: [88] };
-                    break;
-                case '7days':
-                    labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    hdpData = this.chartData.hdp;
-                    break;
-                case '30days':
-                    labels = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'];
-                    hdpData = { 1: [91, 92, 93, 94], 2: [87, 88, 89, 90], 3: [84, 85, 86, 87] };
-                    break;
-                case '3months':
-                    labels = ['Bulan 1', 'Bulan 2', 'Bulan 3'];
-                    hdpData = { 1: [90, 92, 93], 2: [86, 88, 89], 3: [83, 85, 86] };
-                    break;
-                case '6months':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-                    hdpData = { 1: [88, 89, 90, 91, 92, 93], 2: [84, 85, 86, 87, 88, 89], 3: [81, 82, 83, 84, 85, 86] };
-                    break;
-                case 'ytd':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                    hdpData = { 1: [85, 86, 87, 88, 89, 90, 91, 92, 93, 93, 94, 94], 2: [81, 82, 83, 84, 85, 86, 87, 88, 89, 89, 90, 90], 3: [78, 79, 80, 81, 82, 83, 84, 85, 86, 86, 87, 87] };
-                    break;
-                default:
-                    labels = this.chartData.labels;
-                    hdpData = this.chartData.hdp;
-            }
-            
-            const datasets = this.kandangList
-                .filter(k => k.hdpVisible)
-                .map(k => ({
-                    label: k.name,
-                    data: hdpData[k.id],
-                    borderColor: k.color,
-                    backgroundColor: fillArea ? k.color + '40' : k.color + '20',
+            let datasets = [];
+            if (this.hdpConfig.viewMode === 'average') {
+                // Average view - single line
+                datasets.push({
+                    label: 'HDP Rata-rata',
+                    data: this.chartData.hdp?.average || [],
+                    borderColor: '#3B82F6',
+                    backgroundColor: fillArea ? 'rgba(59,130,246,0.3)' : 'rgba(59,130,246,0.1)',
                     fill: fillArea,
                     tension: this.hdpConfig.smoothLine ? 0.4 : 0,
                     pointRadius: this.hdpConfig.showPoints ? 3 : 0,
                     borderRadius: chartType === 'bar' ? 4 : 0
-                }));
+                });
+            } else {
+                // Per-cage view - multiple lines
+                const perCageData = this.chartData.hdp?.perCage || {};
+                this.kandangList.filter(k => k.hdpVisible).forEach((kandang, idx) => {
+                    datasets.push({
+                        label: kandang.name,
+                        data: perCageData[kandang.id] || [],
+                        borderColor: colors[idx % colors.length],
+                        backgroundColor: fillArea ? `${colors[idx % colors.length]}40` : 'transparent',
+                        fill: fillArea,
+                        tension: this.hdpConfig.smoothLine ? 0.4 : 0,
+                        pointRadius: this.hdpConfig.showPoints ? 3 : 0,
+                        borderRadius: chartType === 'bar' ? 4 : 0
+                    });
+                });
+            }
             
             this.charts.hdp = new Chart(canvas, {
-                    type: chartType,
-                    data: { labels, datasets },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { 
-                                beginAtZero: false,
-                                min: 70,
-                                max: 100,
-                                ticks: { callback: v => v + '%' },
-                                grid: { display: this.hdpConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
-                            },
-                            x: { grid: { display: false } }
-                        }
+                type: chartType,
+                data: { labels, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: this.hdpConfig.viewMode === 'perCage' } },
+                    scales: {
+                        y: { 
+                            beginAtZero: false, min: 70, max: 100,
+                            ticks: { callback: v => v + '%' },
+                            grid: { display: this.hdpConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: { grid: { display: false } }
+                    }
                 }
             });
         },
         
         initHHEPChart() {
             const canvas = document.getElementById('chartHHEP');
-            if (!canvas) {
-                console.error('HHEP canvas not found');
-                return;
-            }
+            if (!canvas) return;
             
-            // Properly destroy existing chart using Chart.getChart
             const existingChart = Chart.getChart(canvas);
-            if (existingChart) {
-                existingChart.destroy();
-            }
+            if (existingChart) existingChart.destroy();
             
-            // Determine chart type from config
             const chartType = this.hhepConfig.chartType === 'area' ? 'line' : this.hhepConfig.chartType;
             const fillArea = this.hhepConfig.chartType === 'area' || this.hhepConfig.fillArea;
+            const labels = this.chartData.labels || [];
+            const colors = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444'];
             
-            // Generate labels and data based on time range
-            let labels, hhepData;
-            switch(this.hhepConfig.timeRange) {
-                case 'daily':
-                    labels = ['Hari Ini'];
-                    hhepData = { 1: [91], 2: [87], 3: [86] };
-                    break;
-                case '7days':
-                    labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    hhepData = this.chartData.hhep;
-                    break;
-                case '30days':
-                    labels = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'];
-                    hhepData = { 1: [89, 90, 91, 92], 2: [85, 86, 87, 88], 3: [82, 83, 84, 85] };
-                    break;
-                case '3months':
-                    labels = ['Bulan 1', 'Bulan 2', 'Bulan 3'];
-                    hhepData = { 1: [88, 90, 91], 2: [84, 86, 87], 3: [81, 83, 84] };
-                    break;
-                case '6months':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-                    hhepData = { 1: [86, 87, 88, 89, 90, 91], 2: [82, 83, 84, 85, 86, 87], 3: [79, 80, 81, 82, 83, 84] };
-                    break;
-                case 'ytd':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                    hhepData = { 1: [83, 84, 85, 86, 87, 88, 89, 90, 91, 91, 92, 92], 2: [79, 80, 81, 82, 83, 84, 85, 86, 87, 87, 88, 88], 3: [76, 77, 78, 79, 80, 81, 82, 83, 84, 84, 85, 85] };
-                    break;
-                default:
-                    labels = this.chartData.labels;
-                    hhepData = this.chartData.hhep;
-            }
-            
-            const datasets = this.kandangList
-                .filter(k => k.hhepVisible)
-                .map(k => ({
-                    label: k.name,
-                    data: hhepData[k.id],
-                    borderColor: k.color,
-                    backgroundColor: fillArea ? k.color + '40' : k.color + '20',
+            let datasets = [];
+            if (this.hhepConfig.viewMode === 'average') {
+                datasets.push({
+                    label: 'HHEP Rata-rata',
+                    data: this.chartData.hhep?.average || [],
+                    borderColor: '#8B5CF6',
+                    backgroundColor: fillArea ? 'rgba(139,92,246,0.3)' : 'rgba(139,92,246,0.1)',
                     fill: fillArea,
                     tension: this.hhepConfig.smoothLine ? 0.4 : 0,
                     pointRadius: this.hhepConfig.showPoints ? 3 : 0,
                     borderRadius: chartType === 'bar' ? 4 : 0
-                }));
+                });
+            } else {
+                const perCageData = this.chartData.hhep?.perCage || {};
+                this.kandangList.filter(k => k.hhepVisible).forEach((kandang, idx) => {
+                    datasets.push({
+                        label: kandang.name,
+                        data: perCageData[kandang.id] || [],
+                        borderColor: colors[idx % colors.length],
+                        backgroundColor: fillArea ? `${colors[idx % colors.length]}40` : 'transparent',
+                        fill: fillArea,
+                        tension: this.hhepConfig.smoothLine ? 0.4 : 0,
+                        pointRadius: this.hhepConfig.showPoints ? 3 : 0,
+                        borderRadius: chartType === 'bar' ? 4 : 0
+                    });
+                });
+            }
             
             this.charts.hhep = new Chart(canvas, {
                 type: chartType,
@@ -1455,12 +1427,10 @@ function ayamDashboard() {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: { legend: { display: this.hhepConfig.viewMode === 'perCage' } },
                     scales: {
                         y: { 
-                            beginAtZero: false,
-                            min: 70,
-                            max: 100,
+                            beginAtZero: false, min: 70, max: 100,
                             ticks: { callback: v => v + '%' },
                             grid: { display: this.hhepConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
                         },
@@ -1472,77 +1442,53 @@ function ayamDashboard() {
         
         initMortalitasChart() {
             const canvas = document.getElementById('chartMortalitas');
-            if (!canvas) {
-                console.error('Mortalitas canvas not found');
-                return;
-            }
+            if (!canvas) return;
             
-            // Properly destroy existing chart using Chart.getChart
             const existingChart = Chart.getChart(canvas);
-            if (existingChart) {
-                existingChart.destroy();
-            }
+            if (existingChart) existingChart.destroy();
             
-            // Determine chart type from config
             const chartType = this.mortalitasConfig.chartType === 'area' ? 'line' : this.mortalitasConfig.chartType;
             const fillArea = this.mortalitasConfig.chartType === 'area' || this.mortalitasConfig.fillArea;
+            const labels = this.chartData.labels || [];
+            const colors = ['#EF4444', '#F97316', '#F59E0B', '#EAB308', '#84CC16'];
             
-            // Generate labels based on time range
-            let labels, data;
-            switch(this.mortalitasConfig.timeRange) {
-                case 'daily':
-                    labels = ['Hari Ini'];
-                    data = [3];
-                    break;
-                case '7days':
-                    labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    data = [3, 2, 4, 1, 2, 1, 3];
-                    break;
-                case '30days':
-                    labels = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'];
-                    data = [3, 2, 4, 1];
-                    break;
-                case '3months':
-                    labels = ['Bulan 1', 'Bulan 2', 'Bulan 3'];
-                    data = [8, 6, 10];
-                    break;
-                case '6months':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-                    data = [8, 6, 10, 5, 7, 4];
-                    break;
-                case 'ytd':
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                    data = [8, 6, 10, 5, 7, 4, 6, 8, 5, 9, 7, 6];
-                    break;
-                default:
-                    labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-                    data = this.chartData.mortalitas;
-            }
-            
-            this.charts.mortalitas = new Chart(canvas, {
-                type: chartType,
-                data: {
-                    labels,
-                    datasets: [{
-                        label: 'Kematian',
-                        data,
-                        backgroundColor: chartType === 'bar' ? '#EF4444' : (fillArea ? 'rgba(239, 68, 68, 0.3)' : 'rgba(239, 68, 68, 0.1)'),
-                        borderColor: '#EF4444',
+            let datasets = [];
+            if (this.mortalitasConfig.viewMode === 'perCage') {
+                const perCageData = this.chartData.mortalitas?.perCage || {};
+                this.kandangList.forEach((kandang, idx) => {
+                    datasets.push({
+                        label: kandang.name,
+                        data: perCageData[kandang.id] || [],
+                        backgroundColor: chartType === 'bar' ? colors[idx % colors.length] : (fillArea ? `${colors[idx % colors.length]}40` : 'transparent'),
+                        borderColor: colors[idx % colors.length],
                         borderRadius: chartType === 'bar' ? 4 : 0,
                         fill: fillArea,
                         tension: this.mortalitasConfig.smoothLine ? 0.4 : 0,
                         pointRadius: this.mortalitasConfig.showPoints ? 3 : 0
-                    }]
-                },
+                    });
+                });
+            } else {
+                datasets.push({
+                    label: 'Total Mortalitas',
+                    data: this.chartData.mortalitas?.average || [],
+                    backgroundColor: chartType === 'bar' ? '#EF4444' : (fillArea ? 'rgba(239,68,68,0.3)' : 'rgba(239,68,68,0.1)'),
+                    borderColor: '#EF4444',
+                    borderRadius: chartType === 'bar' ? 4 : 0,
+                    fill: fillArea,
+                    tension: this.mortalitasConfig.smoothLine ? 0.4 : 0,
+                    pointRadius: this.mortalitasConfig.showPoints ? 3 : 0
+                });
+            }
+            
+            this.charts.mortalitas = new Chart(canvas, {
+                type: chartType,
+                data: { labels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: { legend: { display: this.mortalitasConfig.viewMode === 'perCage' } },
                     scales: {
-                        y: { 
-                            beginAtZero: true,
-                            grid: { display: this.mortalitasConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
-                        },
+                        y: { beginAtZero: true, grid: { display: this.mortalitasConfig.showGrid, color: 'rgba(0,0,0,0.05)' } },
                         x: { grid: { display: false } }
                     }
                 }

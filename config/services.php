@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'bmkg' => [
+        'region_code' => env('BMKG_REGION_CODE', '35.15.08.2023'),
+        'cache_duration' => env('BMKG_CACHE_DURATION', 1800), // 30 minutes
+    ],
+
 ];
