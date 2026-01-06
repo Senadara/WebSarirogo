@@ -93,5 +93,23 @@
             </a>
 
         </nav>
+
+        <!-- Logout Section -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t bg-white">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button 
+                    type="submit"
+                    class="flex items-center gap-3 px-3 py-2 w-full rounded-lg transition group
+                           text-red-600 hover:bg-red-50"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    <span class="text-sm font-semibold">Keluar</span>
+                </button>
+            </form>
+        </div>
     </aside>
 </div>

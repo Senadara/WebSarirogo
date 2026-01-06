@@ -34,10 +34,7 @@
             </div>
 
             <div class="flex items-center gap-2 md:gap-4">
-                <button class="relative p-1.5 md:p-2 rounded-full hover:bg-gray-100">
-                    <img src="/assets/icons/notification.svg" class="w-4 h-4 md:w-5 md:h-5" alt="notifikasi">
-                    <span class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-2 h-2 md:w-2.5 md:h-2.5 bg-red-500 rounded-full"></span>
-                </button>
+                @include('components.ui.notification-bell')
                 <button class="p-1.5 md:p-2 rounded-full hover:bg-gray-100">
                     <img src="/assets/icons/user.svg" class="w-4 h-4 md:w-5 md:h-5" alt="user">
                 </button>

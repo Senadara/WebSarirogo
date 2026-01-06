@@ -32,11 +32,29 @@ Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login
 Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])
     ->name('logout');
 
+// Password Reset
+Route::get('/forgot-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showEmailForm'])
+    ->name('password.request');
+Route::post('/forgot-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'verifyEmail'])
+    ->name('password.verify');
+Route::get('/reset-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+Route::post('/reset-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'resetPassword'])
+    ->name('password.update');
+
+// =======================
+// API Notifications
+// =======================
+Route::prefix('api/notifications')->middleware(['auth'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\NotificationController::class, 'index']);
+    Route::get('/unread-count', [\App\Http\Controllers\NotificationController::class, 'unreadCount']);
+    Route::post('/mark-read', [\App\Http\Controllers\NotificationController::class, 'markAllAsRead']);
+});
 
 // =======================
 // admin
 // =======================
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
     // ============================
     // AYAM

@@ -22,10 +22,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <button class="relative p-2 rounded-full hover:bg-gray-100 transition">
-                    <img src="/assets/icons/notification.svg" class="w-5 h-5">
-                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
-                </button>
+                @include('components.ui.notification-bell')
                 <button class="p-2 rounded-full hover:bg-gray-100 transition">
                     <img src="/assets/icons/user.svg" class="w-5 h-5">
                 </button>
@@ -45,10 +42,7 @@
             </div>
 
             <div class="hidden lg:flex items-center gap-4">
-                <button class="relative p-2 rounded-full hover:bg-gray-100 transition">
-                    <img src="/assets/icons/notification.svg" class="w-5 h-5">
-                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
-                </button>
+                @include('components.ui.notification-bell')
                 <button class="p-2 rounded-full hover:bg-gray-100 transition">
                     <img src="/assets/icons/user.svg" class="w-5 h-5">
                 </button>

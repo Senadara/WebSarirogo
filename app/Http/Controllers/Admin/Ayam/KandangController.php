@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Ayam;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cage;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 
 
@@ -35,7 +36,7 @@ class KandangController extends Controller
         if ($step === 1) {
             $kandang['step1'] = $request->validate([
                 'nama_kandang' => 'required|string',
-                'tipe_kandang' => 'required|string', 
+                'tipe_kandang' => 'required|string',
                 'lokasi' => 'required|string',
                 'foto_kandang' => 'required|image|mimes:jpg,jpeg,png'
             ]);
@@ -97,13 +98,16 @@ class KandangController extends Controller
             ]
         )->validate();
 
-        Cage::create([
+        $cage = Cage::create([
             'cage_name'     => $validated['cage_name'],
             'location'      => $validated['location'],
             'cage_category' => $validated['cage_category'],
             'total_life'    => $validated['total_life'] ?? 0,
             'total_dead'    => $validated['total_dead'] ?? 0,
         ]);
+
+        // Create notification for new cage
+        NotificationService::notifyCreate('Kandang', $cage->id, $cage->cage_name);
 
         session()->forget('kandang');
 
