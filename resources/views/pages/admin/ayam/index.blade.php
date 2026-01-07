@@ -1313,7 +1313,7 @@ function ayamDashboard() {
                         } : {}
                     },
                     scales: {
-                        y: { beginAtZero: false, min: 1.5, max: 2.5, grid: { display: this.fcrConfig.showGrid, color: 'rgba(0,0,0,0.05)' } },
+                        y: { beginAtZero: false, grid: { display: this.fcrConfig.showGrid, color: 'rgba(0,0,0,0.05)' } },
                         x: { grid: { display: false } }
                     }
                 }
@@ -1371,7 +1371,7 @@ function ayamDashboard() {
                     plugins: { legend: { display: this.hdpConfig.viewMode === 'perCage' } },
                     scales: {
                         y: { 
-                            beginAtZero: false, min: 70, max: 100,
+                            beginAtZero: true, min: 0, max: 100,
                             ticks: { callback: v => v + '%' },
                             grid: { display: this.hdpConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
                         },
@@ -1430,7 +1430,7 @@ function ayamDashboard() {
                     plugins: { legend: { display: this.hhepConfig.viewMode === 'perCage' } },
                     scales: {
                         y: { 
-                            beginAtZero: false, min: 70, max: 100,
+                            beginAtZero: true, min: 0, max: 100,
                             ticks: { callback: v => v + '%' },
                             grid: { display: this.hhepConfig.showGrid, color: 'rgba(0,0,0,0.05)' }
                         },

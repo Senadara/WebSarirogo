@@ -72,7 +72,7 @@ class CageSeeder extends Seeder
         ];
 
         foreach ($cages as $cage) {
-            Cage::create($cage);
+            Cage::updateOrCreate(['name' => $cage['name']], $cage);
         }
     }
 }
