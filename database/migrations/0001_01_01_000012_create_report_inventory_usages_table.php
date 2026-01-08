@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('report_inventory_usages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->date('date');
-            $table->enum('type', ['IN', 'OUT']);
-            $table->decimal('amount', 12, 2);
-            $table->string('image')->nullable();
+            $table->foreignId('daily_chicken_report_id')->constrained('daily_chicken_reports')->onDelete('cascade');
+            $table->foreignId('inventory_id')->constrained('inventories')->onDelete('cascade');
+            $table->decimal('quantity', 10, 2);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('report_inventory_usages');
     }
 };

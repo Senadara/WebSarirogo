@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,25 +12,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            // Core Tables
             RoleSeeder::class,
             UserSeeder::class,
+            
+            // Inventory Module
             CategorySeeder::class,
-            LandSeeder::class,
-            CageSeeder::class,
+            SupplierSeeder::class,
+            WarehouseSeeder::class,
             InventorySeeder::class,
-            PlantSeeder::class,
-            AnimalSeeder::class,
-            ReportSeeder::class,
-            TransactionSeeder::class,
-            DetailTransactionSeeder::class,
-            LogTransactionSeeder::class,
-            LogSeeder::class,
+            
+            // Poultry Module
+            CageSeeder::class,
+            DailyChickenReportSeeder::class,
         ]);
-
-        DB::table('categories')->insert([
-            'name_category' => 'Okra',
-            'price' => 1000.00, // harga per satuan
-        ]);
-
     }
 }

@@ -24,7 +24,7 @@
                 label="Umur Ayam (hari)"
                 name="umur_ayam"
                 placeholder="Contoh: Kandang A"
-                value="{{ old('umur_ayam', $kandang['umur_ayam'] ?? '') }}" />
+                value="{{ old('umur_ayam', $kandang['step2']['umur_ayam'] ?? '') }}" />
 
             <!-- tipe kandang -->
             <x-ui.input
@@ -32,7 +32,7 @@
                 label="Total Populasi Saat Ini (ekor)"
                 name="total_populasi_saat_ini"
                 placeholder="Contoh: 100 Ekor"
-                value="{{ old('total_populasi_saat_ini', $kandang['total_populasi_saat_ini'] ?? '') }}" />
+                value="{{ old('total_populasi_saat_ini', $kandang['step2']['total_populasi_saat_ini'] ?? '') }}" />
 
             <!-- lokasi -->
             <x-ui.input
@@ -40,7 +40,7 @@
                 label="Total Populasi Awal (ekor)"
                 name="total_populasi_awal"
                 placeholder="Contoh: 220 Ekor "
-                value="{{old ('total_populasi_awal', $kandang['total_populasi_awal'] ?? '') }}" />
+                value="{{old ('total_populasi_awal', $kandang['step2']['total_populasi_awal'] ?? '') }}" />
 
             <x-ui.dropdown
                 required
@@ -52,7 +52,7 @@
                     'production' => 'Production',
                     'afkir' => 'Afkir'
                 ]"
-                :selected="$kandang['fase_ayam'] ?? null" />
+                :selected="$kandang['step2']['fase_ayam'] ?? null" />
 
         </div>
     </div>

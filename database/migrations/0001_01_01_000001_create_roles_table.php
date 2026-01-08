@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cages', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('cage_name', 100);
-            $table->string('location');
-            $table->string('cage_category', 50);
-            $table->integer('total_life')->default(0);
-            $table->integer('total_dead')->default(0);
+            $table->enum('role_name', [
+                'petugas_ayam',
+                'petugas_kambing',
+                'petugas_ikan',
+                'petugas_okra',
+                'petugas_inventory',
+                'admin'
+            ]);
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cages');
+        Schema::dropIfExists('roles');
     }
 };

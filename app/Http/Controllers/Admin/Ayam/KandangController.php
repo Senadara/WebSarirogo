@@ -22,12 +22,24 @@ class KandangController extends Controller
 
     public function create(int $step)
     {
+        $kandang = session('kandang', []);
+
+        // // guard anti lompat
+        // if ($step > 1 && !isset($kandang['step1'])) {
+        //     return redirect()->route('admin.ayam.kandang.create', 1);
+        // }
+
+        // if ($step > 2 && !isset($kandang['step2'])) {
+        //     return redirect()->route('admin.ayam.kandang.create', 2);
+        // }
+
         return view('pages.admin.ayam.kandang.forms.form', [
             'step' => $step,
             'mode' => 'create',
-            'kandang' => session('kandang', []),
+            'kandang' => $kandang,
         ]);
     }
+
 
     public function storeStep(Request $request, int $step)
     {
@@ -38,7 +50,8 @@ class KandangController extends Controller
                 'nama_kandang' => 'required|string',
                 'tipe_kandang' => 'required|string',
                 'lokasi' => 'required|string',
-                'foto_kandang' => 'required|image|mimes:jpg,jpeg,png'
+                'foto_kandang' => 'required|image|mimes:jpg,jpeg,png',
+                'tanggal_pembuatan' => 'required|date'
             ]);
 
             if ($request->hasFile('foto_kandang')) {
@@ -55,18 +68,9 @@ class KandangController extends Controller
             ]);
         }
 
-        if ($step === 3) {
-            $kandang['step3'] = $request->validate([
-                'catatan' => 'nullable|string'
-            ]);
-        }
-
         session(['kandang' => $kandang]);
 
-        return redirect()->route(
-            $step < 3 ? 'admin.ayam.kandang.create' : 'admin.ayam.kandang.index',
-            $step < 3 ? $step + 1 : []
-        );
+        return redirect()->route('admin.ayam.kandang.create',  $step + 1 );
     }
 
     public function store()

@@ -9,13 +9,59 @@ class Cage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['cage_name', 'location', 'cage_category', 'total_life', 'total_dead'];
+    protected $fillable = [
+        'name',
+        'cage_type',
+        'location',
+        'chicken_type',
+        'capacity',
+        'initial_population',
+        'current_population',
+        'age_days',
+        'phase',
+        'installed_date',
+        'chick_in_date',
+        'photo',
+        'status',
+    ];
 
-    public $timestamps = false;
+    protected $casts = [
+        'installed_date' => 'date',
+        'chick_in_date' => 'date',
+    ];
 
-    public function animals()
+    public function dailyReports()
     {
-        return $this->hasMany(Animal::class);
+        return $this->hasMany(DailyChickenReport::class);
+    }
+
+    /**
+     * Get the latest daily report
+     */
+    public function latestReport()
+    {
+        return $this->hasOne(DailyChickenReport::class)->latestOfMany('report_date');
+    }
+
+    /**
+     * Calculate age in weeks based on age_days
+     */
+    public function getAgeWeeksAttribute(): int
+    {
+        return (int) floor($this->age_days / 7);
+    }
+
+    /**
+     * Get phase label in Indonesian
+     */
+    public function getPhaseLabelAttribute(): string
+    {
+        return match($this->phase) {
+            'starter' => 'Starter',
+            'grower' => 'Grower',
+            'production' => 'Produksi',
+            'culled' => 'Afkir',
+            default => $this->phase,
+        };
     }
 }
-

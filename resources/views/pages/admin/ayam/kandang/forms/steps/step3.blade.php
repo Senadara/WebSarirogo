@@ -32,24 +32,24 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Nama Kandang</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">Kandang A</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{$kandang['step1']['nama_kandang']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Lokasi</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">Tanah Ngagel</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{ $kandang['step1']['lokasi']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Tipe Kandang</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">Kandang A</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{ $kandang['step1']['tipe_kandang']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Tanggal Pembuatan</p>
-                        <p class="text-sm md:text-base font-semibold text-primary-4">17 Agustus 1945</p>
+                        <p class="text-sm md:text-base font-semibold text-primary-4">{{ $kandang['step1']['tanggal_pembuatan']}}</p>
                     </div>
                 </div>
             </div>
 
-             <!-- info Siklus Ayam -->
+            <!-- info Siklus Ayam -->
             <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
                 <div class="flex items-center gap-2 mb-4">
                     <div class="w-8 h-8 rounded-lg bg-primary-1 flex items-center justify-center">
@@ -63,19 +63,19 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Umur Ayam</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">29 Tahun</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{$kandang['step2']['umur_ayam']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Total Populasi awal</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">220 Ekor</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{$kandang['step2']['total_populasi_awal']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Total Populasi saat ini</p>
-                        <p class="text-sm md:text-base font-semibold text-gray-900">220 Ekor</p>
+                        <p class="text-sm md:text-base font-semibold text-gray-900">{{$kandang['step2']['total_populasi_saat_ini']}}</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-3 md:p-4">
                         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-wide mb-1">Fase Ayam saat ini</p>
-                        <p class="text-sm md:text-base font-semibold text-primary-4">Produksi</p>
+                        <p class="text-sm md:text-base font-semibold text-primary-4">{{$kandang['step2']['fase_ayam']}}</p>
                     </div>
                 </div>
             </div>
@@ -99,10 +99,18 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-primary-3/20 to-primary-4/20 rounded-xl md:rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform"></div>
                     <div class="relative bg-gray-50 rounded-xl md:rounded-2xl overflow-hidden border-2 border-white shadow-md">
                         <div class="aspect-[4/3]">
-                            <img
+                            <!-- <img
                                 src="/assets/icons/kandang.svg"
                                 alt="Bukti aktivitas"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover"> -->
+                            @if (!empty($kandang['step1']['foto_kandang']))
+                            <img
+                                src="{{ asset('storage/' . $kandang['step1']['foto_kandang']) }}"
+                                alt="Foto Kandang"
+                                class="w-full h-48 object-cover rounded-lg border border-gray-200">
+                            @else
+                            <p class="text-sm text-gray-400">Foto belum diunggah</p>
+                            @endif
                         </div>
                         <!-- overlay image info -->
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 md:p-4">

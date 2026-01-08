@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lands', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('land_name', 100);
-            $table->string('location');
-            $table->integer('total_plant')->default(0);
-            $table->decimal('wide', 10, 2)->default(0);
+            $table->string('name', 100)->unique();
+            $table->string('description')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lands');
+        Schema::dropIfExists('categories');
     }
 };
