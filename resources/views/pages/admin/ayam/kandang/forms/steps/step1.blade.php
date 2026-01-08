@@ -28,7 +28,7 @@
                 label="Nama Kandang"
                 name="nama_kandang"
                 placeholder="Kandang A"
-                value="{{ old('nama_kandang', $kandang['nama'] ?? '') }}"
+                value="{{ old('nama_kandang', $kandang['step1']['nama_kandang'] ?? '') }}"
             />
 
             <!-- Tipe Kandang -->
@@ -37,7 +37,7 @@
                 label="Tipe Kandang"
                 name="tipe_kandang"
                 placeholder="Postal"
-                value="{{ old('tipe_kandang', $kandang['tipe'] ?? '') }}"
+                value="{{ old('tipe_kandang', $kandang['step1']['tipe_kandang'] ?? '') }}"
             />
 
             <!-- Lokasi -->
@@ -46,7 +46,7 @@
                 label="Lokasi"
                 name="lokasi"
                 placeholder="Tanah Ngagel"
-                value="{{ old('lokasi', $kandang['lokasi'] ?? '') }}"
+                value="{{ old('lokasi', $kandang['step1']['lokasi'] ?? '') }}"
             />
 
             <!-- Tanggal Pembuatan -->
@@ -55,7 +55,7 @@
                 label="Tanggal Pembuatan"
                 name="tanggal_pembuatan"
                 type="date"
-                value="{{ old('tanggal_pembuatan', $kandang['tanggal_pembuatan'] ?? '') }}"
+                value="{{ old('tanggal_pembuatan', $kandang['step1']['tanggal_pembuatan'] ?? '') }}"
             />
 
             <!-- Upload Foto -->

@@ -59,6 +59,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 ->whereIn('step', [1, 2, 3])
                 ->name('create');
 
+            // create(buat nyimpen log per step)
+            Route::post('/create/{step}', [KandangController::class, 'storeStep'])
+            ->whereIn('step', [1,2,3])
+            ->name('store.step') ;
+
+            // final store
+            Route::post('/store-kandang', [KandangController::class, 'store'])
+            ->name('store.kandang');
+
+
             //form edit route
             Route::get('/{kandang}/edit/{step}', [KandangController::class, 'edit'])
                 ->whereIn('step', [1, 2, 3])
