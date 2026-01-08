@@ -50,6 +50,24 @@ class IndexController extends Controller
             ];
         })->values();
 
+        // 8. Notifications
+        $notifications = DB::table('notifications')
+            ->where('notifiable_id', auth()->id() ?? 1) // Fallback to 1 for dev
+            ->orderBy('created_at', 'desc')
+            ->limit(20)
+            ->get()
+            ->map(function ($n) {
+                $data = json_decode($n->data, true);
+                return [
+                    'id' => $n->id,
+                    'title' => $data['title'] ?? 'Notifikasi',
+                    'message' => $data['message'] ?? '',
+                    'type' => $data['type'] ?? 'info',
+                    'read_at' => $n->read_at,
+                    'created_at' => Carbon::parse($n->created_at)->diffForHumans(),
+                ];
+            });
+
         return view('pages.admin.ayam.index', compact(
             'populasi', 
             'performa', 
@@ -58,7 +76,9 @@ class IndexController extends Controller
             'alerts',
             'aktivitasHarian',
             'kandangList',
-            'cages'
+            'kandangList',
+            'cages',
+            'notifications'
         ));
     }
 
