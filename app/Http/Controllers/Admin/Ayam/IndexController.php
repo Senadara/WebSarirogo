@@ -36,7 +36,7 @@ class IndexController extends Controller
         $alerts = $this->getAlerts($cageIds);
         
         // 6. Daily Activities
-        $aktivitasHarian = $this->getDailyActivities($cageIds, $today);
+        $aktivitasHarian = $this->getDailyActivities($cageIds, $today, $cages);
         
         // 7. Kandang List for charts
         $kandangList = $cages->map(function ($cage, $index) {
@@ -91,7 +91,7 @@ class IndexController extends Controller
         
         // Today's production
         $todayReports = DailyChickenReport::whereIn('cage_id', $cageIds)
-            ->where('report_date', $today)
+            ->whereDate('report_date', $today)
             ->get();
         
         $eggsToday = $todayReports->sum('eggs_produced');
@@ -132,17 +132,17 @@ class IndexController extends Controller
      */
     private function getPerformanceIndex($cageIds, $today)
     {
-        // Get this week's data for averages
-        $weekStart = $today->copy()->startOfWeek();
+        // Get this month's data for averages (Reset Monthly)
+        $monthStart = $today->copy()->startOfMonth();
         
-        $weeklyReports = DailyChickenReport::whereIn('cage_id', $cageIds)
-            ->whereBetween('report_date', [$weekStart->toDateString(), $today->toDateString()])
+        $monthlyReports = DailyChickenReport::whereIn('cage_id', $cageIds)
+            ->whereBetween('report_date', [$monthStart->toDateString(), $today->toDateString()])
             ->get();
 
         // Calculate averages
-        $avgFcr = $weeklyReports->avg('fcr') ?: 0;
-        $avgHdp = $weeklyReports->avg('hdp') ?: 0;
-        $avgHhep = $weeklyReports->avg('hhep') ?: 0;
+        $avgFcr = $monthlyReports->avg('fcr') ?: 0;
+        $avgHdp = $monthlyReports->avg('hdp') ?: 0;
+        $avgHhep = $monthlyReports->avg('hhep') ?: 0;
         
         // Today's mortality
         $mortalityToday = DailyChickenReport::whereIn('cage_id', $cageIds)
@@ -176,7 +176,9 @@ class IndexController extends Controller
             'fcr' => round($avgFcr, 2),
             'hdp' => round($avgHdp, 1),
             'hhep' => round($avgHhep, 1),
-            'mortalitas' => $mortalityToday,
+            'hdp' => round($avgHdp, 1),
+            'hhep' => round($avgHhep, 1),
+            'mortalitas' => $mortalityMonth, // Changed to Monthly Mortality as per "Reset per bulan" request
             'mortalitas_bulan' => $mortalityMonth,
             'mortalitas_persen' => $mortalityPercent,
             // Trends (compared to last week)
@@ -378,17 +380,41 @@ class IndexController extends Controller
             ];
         }
 
+        // 5. Check if no report today (Belum ada laporan)
+        $todayReportsCount = DailyChickenReport::whereIn('cage_id', $cageIds)
+            ->whereDate('report_date', $today)
+            ->count();
+            
+        if ($todayReportsCount == 0) {
+            $alerts[] = [
+                'type' => 'info',
+                'title' => 'Belum Ada Laporan',
+                'message' => 'Laporan harian hari ini belum diisi',
+            ];
+        }
+
         return $alerts;
     }
 
     /**
      * Get daily activities summary
      */
-    private function getDailyActivities($cageIds, $today)
+    private function getDailyActivities($cageIds, $today, $cages)
     {
+        // Use whereDate to be strictly ensuring today's data only
         $todayReports = DailyChickenReport::whereIn('cage_id', $cageIds)
-            ->where('report_date', $today)
+            ->whereDate('report_date', $today)
             ->get();
+
+        // Calculate pending cages
+        $submittedCageIds = $todayReports->pluck('cage_id')->toArray();
+        $pendingCages = $cages->filter(function($cage) use ($submittedCageIds) {
+            return !in_array($cage->id, $submittedCageIds);
+        })->pluck('name')->toArray();
+
+        // Limit pending text to first 2 + count
+        $pendingText = empty($pendingCages) ? 'Semua selesai' : 
+            (count($pendingCages) <= 2 ? implode(', ', $pendingCages) . ' pending' : count($pendingCages) . ' kandang pending');
 
         return [
             'pakan' => [
@@ -403,8 +429,9 @@ class IndexController extends Controller
             ],
             'laporan' => [
                 'value' => $todayReports->count(),
-                'total' => Cage::whereIn('id', $cageIds)->count(),
+                'total' => $cages->count(),
                 'status' => $todayReports->count() > 0 ? 'completed' : 'pending',
+                'pending_text' => $pendingText,
             ],
         ];
     }

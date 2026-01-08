@@ -275,11 +275,11 @@
                             </div>
                             <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{ number_format($performa['fcr'] ?? 0, 2) }}</p>
                             @php $fcrTrend = $performa['fcr_trend'] ?? ['value' => 0, 'direction' => 'stable']; @endphp
-                            <p class="text-xs {{ ($performa['fcr'] ?? 0) < 2 ? 'text-emerald-600' : 'text-red-600' }} flex items-center gap-1 mt-1">
+                            <p class="text-xs {{ ($performa['fcr'] ?? 0) < 2.2 ? 'text-emerald-600' : 'text-red-600' }} flex items-center gap-1 mt-1">
                                 @if($fcrTrend['direction'] == 'down')
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
                                 @endif
-                                {{ ($performa['fcr'] ?? 0) < 2 ? 'Di bawah target' : 'Di atas target' }}
+                                {{ ($performa['fcr'] ?? 0) < 2.2 ? 'Baik (Efisien)' : 'Buruk (Boros)' }}
                             </p>
                         </div>
                         <!-- HDP -->
@@ -418,10 +418,15 @@
                         </div>
                         <span class="text-xs font-medium text-gray-600">Pemberian Pakan</span>
                     </div>
-                    <p class="text-xl sm:text-2xl font-bold text-gray-900">150 kg</p>
-                    <p class="text-xs text-emerald-600 mt-1 flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Selesai hari ini
+                    <p class="text-xl sm:text-2xl font-bold text-gray-900">{{ number_format($aktivitasHarian['pakan']['value'] ?? 0, 0, ',', '.') }} {{ $aktivitasHarian['pakan']['unit'] ?? 'kg' }}</p>
+                    <p class="text-xs {{ ($aktivitasHarian['pakan']['status'] ?? 'pending') == 'completed' ? 'text-emerald-600' : 'text-amber-600' }} mt-1 flex items-center gap-1">
+                        @if(($aktivitasHarian['pakan']['status'] ?? 'pending') == 'completed')
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Selesai hari ini
+                        @else
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Belum selesai
+                        @endif
                     </p>
                 </div>
                 <div class="p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
@@ -445,8 +450,12 @@
                         </div>
                         <span class="text-xs font-medium text-gray-600">Pembersihan</span>
                     </div>
-                    <p class="text-xl sm:text-2xl font-bold text-gray-900">2/3</p>
-                    <p class="text-xs text-amber-600 mt-1">Kandang C pending</p>
+                    <p class="text-xl sm:text-2xl font-bold text-gray-900">
+                        {{ $aktivitasHarian['laporan']['value'] }}/{{ $aktivitasHarian['laporan']['total'] }}
+                    </p>
+                    <p class="text-xs {{ $aktivitasHarian['laporan']['value'] == $aktivitasHarian['laporan']['total'] ? 'text-emerald-600' : 'text-amber-600' }} mt-1">
+                        {{ $aktivitasHarian['laporan']['pending_text'] }}
+                    </p>
                 </div>
                 <div class="p-3 sm:p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-100">
                     <div class="flex items-center gap-2 mb-2">
@@ -457,10 +466,10 @@
                         </div>
                         <span class="text-xs font-medium text-gray-600">Panen Hari Ini</span>
                     </div>
-                    <p class="text-xl sm:text-2xl font-bold text-gray-900">245</p>
-                    <p class="text-xs text-emerald-600 mt-1 flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-                        +12% dari kemarin
+                    <p class="text-xl sm:text-2xl font-bold text-gray-900">{{ number_format($aktivitasHarian['telur']['value'] ?? 0, 0, ',', '.') }}</p>
+                    <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                        <!-- Trend data not available yet -->
+                        Total hari ini
                     </p>
                 </div>
             </div>
