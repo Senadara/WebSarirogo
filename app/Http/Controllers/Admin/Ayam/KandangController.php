@@ -67,8 +67,6 @@ class KandangController extends Controller
             ]);
         }
 
-       
-
         session(['kandang' => $kandang]);
 
         return redirect()->route('admin.ayam.kandang.create',  $step + 1 );
